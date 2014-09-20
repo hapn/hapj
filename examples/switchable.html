@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<title>switchable</title>
+		<meta charset="utf-8"/>
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../src/hapj.js"></script>
+		<script src="../src/ui/hapj.switchable.js"></script>
+		<style>
+			#tab li{display:inline-block;cursor:pointer;}
+			#tab li.on{background:#CCF;}
+			.panel{display:none;text-align:center;width:400px;height:200px;line-height:200px;font-weight:bold;font-size:100px;background:#CCF}
+			
+			#menu li{display:inline-block;cursor:pointer;}
+			#menu li.on{background:#CCF;}
+			.menu{height:500px;background:#CFF;border-bottom:solid 2px #CCC}
+		</style>
+	</head>
+	<body>
+		<ul id="tab">
+			<li>Item1</li>
+			<li>Item2</li>
+			<li>Item3</li>
+			<li>Item4</li>
+		</ul>
+		
+		<div id="div1" class="panel">div1</div>
+		<div id="div2" class="panel">div2</div>
+		<div id="div3" class="panel">div3</div>
+		<div id="div4" class="panel">div4</div>
+		
+		<ul id="menu">
+			<li>Menu1</li>
+			<li>Menu2</li>
+			<li>Menu3</li>
+			<li>Menu4</li>
+		</ul>
+		
+		<div id="mnu1" class="menu">mnuDiv1</div>
+		<div id="mnu2" class="menu">mnuDiv2</div>
+		<div id="mnu3" class="menu">mnuDiv3</div>
+		<div id="mnu4" class="menu">mnuDiv4</div>
+		
+		<script>
+			
+			$('#tab').switchable({
+				tag:'li',
+				method:'click',
+				map:function(i) {
+					return $('#div' + (i+1))[0];
+				},
+				trigger:function(ts) {
+					ts.removeClass('on');
+					this.className = 'on';
+				},
+				target:function(ts) {
+					ts.hide();
+					this.style.display = 'block';
+				},
+				cycleTime:2000
+			}).rand();
+			
+			var ms = $('.menu');
+			$('#menu').switchable({
+				tag:'li',
+				method:'scroll',
+				map:function(i){
+					return ms[i];
+				},
+				trigger:function(ts) {
+					ts.removeClass('on');
+					this.className = 'on';
+				}
+			});
+		</script>
+	</body>
+</html>

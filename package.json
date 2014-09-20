@@ -1,0 +1,51 @@
+{
+  "name": "hapj",
+  "version": "1.0.0",
+  "description": "hapj js framework",
+  "main": "hapj.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.hapn.cc/ronnie/hapj.git"
+  },
+  "keywords": [
+    "hapj",
+    "js"
+  ],
+  "author": "ronnie",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/twbs/bootstrap/blob/master/LICENSE"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-uglify": "^0.5.1",
+    "grunt-jsdoc": "^0.5.7",
+    "ink-docstrap": "^0.4.12",
+    "jquery": "~1.11.1"
+  },
+  "engines": {
+    "node": "~0.10.1"
+  },
+  "jspm": {
+    "main": "js/hapj",
+    "directories": {
+      "example": "examples",
+      "lib": "dist"
+    },
+    "shim": {
+      "js/hapj": {
+        "imports": "jquery",
+        "exports": "$"
+      }
+    },
+    "buildConfig": {
+      "uglify": true
+    }
+  }
+}
