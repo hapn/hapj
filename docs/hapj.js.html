@@ -1,12 +1,39 @@
-/** 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JSDoc: Source: hapj.js</title>
+
+<script src="scripts/prettify/prettify.js"> </script>
+<script src="scripts/prettify/lang-css.js"> </script>
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+<link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+<h1 class="page-title">Source: hapj.js</h1>
+
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/** 
  * Copyright (c) 2014, Jiehun.com.cn Inc. All Rights Reserved
  * @author dengxiaolong@jiehun.com.cn
  * @date 2014-09-22
  * @version 1.0
  * @class hapj
- * @description hapj全新的1.0版，该版本保留了向下兼容性，并将UI组件转变为基于jQuery实现。鼓励使用jQuery来实现基础功能<br/>
+ * @description hapj全新的1.0版，该版本保留了向下兼容性，并将UI组件转变为基于jQuery实现。鼓励使用jQuery来实现基础功能&lt;br/>
  * hapj微内核，下面的闭包需要放置在页面开始处执行
- * <script>(function(d){var h=hapj=function(u){if(typeof u=='string'){var n=d.createElement('script'),s=d.getElementsByTagName('script')[0];n.async=n.defer=true;n.src=u;s.parentNode.insertBefore(n, s);}else{h.c.apply(null, arguments)}};h.a=[];h.c=function(){h.a.push(arguments)};})(document);</script>
+ * &lt;script>(function(d){var h=hapj=function(u){if(typeof u=='string'){var n=d.createElement('script'),s=d.getElementsByTagName('script')[0];n.async=n.defer=true;n.src=u;s.parentNode.insertBefore(n, s);}else{h.c.apply(null, arguments)}};h.a=[];h.c=function(){h.a.push(arguments)};})(document);&lt;/script>
  **/
 // 如果在页面上没有检测到hapj，则重新初始化
 if (!('hapj' in window)) {
@@ -165,7 +192,7 @@ if (!('hapj' in window)) {
 	hapj.start = function(){
 		// 先将要求立即执行的函数执行完毕
 		var i = 0;
-		while(i < _h.a.length) {
+		while(i &lt; _h.a.length) {
 			if (_h.a[i].length > 1 && !hapj.a[i][1]) {
 				_callFunc(_h.a[i]);
 				_h.a[i] = null;
@@ -253,7 +280,7 @@ hapj.ext = {};
 			}
 			var results = [], v;
 			if (H.isArray(from)) {
-				for(var i = 0, l = from.length; i < l; i++){
+				for(var i = 0, l = from.length; i &lt; l; i++){
 					v = this.toJsonFormatString(from[i]);
 					if (v !== undefined) {
 						results.push(v);
@@ -306,7 +333,7 @@ hapj.ext = {};
 				if (typeof v == 'function') {
 					v = v.call(null);
 				} else if (H.isArray(v)) {
-					for(var i = 0, l = v.length; i < l; i++) {
+					for(var i = 0, l = v.length; i &lt; l; i++) {
 						ret.push(key + '=' + _e(v[i]));
 					}
 					continue;
@@ -361,7 +388,7 @@ hapj.ext = {};
 	},
 	getKeyValue = function(from, elemTag, kvTag, key) {
 		var arr = from.split(elemTag), i, l, ret = {};
-		for(i = 0, l = arr.length; i < l; i++ ) {
+		for(i = 0, l = arr.length; i &lt; l; i++ ) {
 			var tmp = arr[i].split(kvTag), k = _d(H.trim(tmp[0]));
 			if (!k) continue;
 			if (k in ret) {
@@ -488,7 +515,7 @@ hapj.ext = {};
 		 * @param {String} str
 		 */
 		stripTags : function(str) {
-	        return (str || '').replace(/<[^>]+>/g, '');
+	        return (str || '').replace(/&lt;[^>]+>/g, '');
 	    }
 	};
 	/**
@@ -512,7 +539,7 @@ hapj.ext = {};
 		 * @param {Mixed} me this指针
 		 */
 		each:function(obj, func, me) {
-			for(var i = 0, l = obj.length; i < l; i++) {
+			for(var i = 0, l = obj.length; i &lt; l; i++) {
 				if (obj[i] === null) continue;
 				if (func.call(me || obj[i], i, obj[i]) === false) {
 					break;
@@ -525,7 +552,7 @@ hapj.ext = {};
 		 * @param {Array} arr2
 		 */
 		merge: function(arr1, arr2) {
-			for(var i = 0, l = arr2.length; i < l; i++) {
+			for(var i = 0, l = arr2.length; i &lt; l; i++) {
 				arr1.push(arr2[i]);
 			}
 			return arr1;
@@ -630,20 +657,20 @@ hapj.ext = {};
 		/**
 		 * 格式化日期
 		 * @param {String} format 
-		 * <dl>
-		 *  <dt>Y</dt>
-		 *  <dd>年份</dd>
-		 *  <dt>m</dt>
-		 *  <dd>月份</dd>
-		 *  <dt>d</dt>
-		 *  <dd>日期</dd>
-		 *  <dt>H</dt>
-		 *  <dd>时钟</dd>
-		 *  <dt>i</dt>
-		 *  <dd>分钟</dd>
-		 *  <dt>s</dt>
-		 *  <dd>秒钟</dd>
-		 * </dl>
+		 * &lt;dl>
+		 *  &lt;dt>Y&lt;/dt>
+		 *  &lt;dd>年份&lt;/dd>
+		 *  &lt;dt>m&lt;/dt>
+		 *  &lt;dd>月份&lt;/dd>
+		 *  &lt;dt>d&lt;/dt>
+		 *  &lt;dd>日期&lt;/dd>
+		 *  &lt;dt>H&lt;/dt>
+		 *  &lt;dd>时钟&lt;/dd>
+		 *  &lt;dt>i&lt;/dt>
+		 *  &lt;dd>分钟&lt;/dd>
+		 *  &lt;dt>s&lt;/dt>
+		 *  &lt;dd>秒钟&lt;/dd>
+		 * &lt;/dl>
 		 * @param {Date} date 必须是日期，不提供则使用当前时间
 		 * @return {String}
 		 * @example
@@ -653,11 +680,11 @@ hapj.ext = {};
 			date = date || new Date();
 			var t,dates = {
 				Y: date.getFullYear(),
-				m: (t = date.getMonth() + 1) < 10 ? '0' + t : t,						
-				d: (t = date.getDate()) < 10 ? '0' + t : t,						
-				H: (t = date.getHours()) < 10 ? '0' + t : t,						
-				i: (t = date.getMinutes()) < 10 ? '0' + t : t,
-				s: (t = date.getSeconds()) < 10 ? '0' + t : t
+				m: (t = date.getMonth() + 1) &lt; 10 ? '0' + t : t,						
+				d: (t = date.getDate()) &lt; 10 ? '0' + t : t,						
+				H: (t = date.getHours()) &lt; 10 ? '0' + t : t,						
+				i: (t = date.getMinutes()) &lt; 10 ? '0' + t : t,
+				s: (t = date.getSeconds()) &lt; 10 ? '0' + t : t
 			};
 			return format.replace(/(([YmdHis]))/g, function(m, i, k){
 				return dates[k];
@@ -804,12 +831,12 @@ hapj.ext = {};
 			var item = LS.getItem(key);
 			if (!item) return null;
 			var pos = item.indexOf("\n");
-			if (pos < 0) {
+			if (pos &lt; 0) {
 				throw new Error('cache.u_valueTypeErrorForRead');
 			}
 			var expire = item.substring(0, pos), value = hapj.json.decode(item.substring(pos+1)); 
 			
-			if (expire > 0 && expire < new Date().getTime()) {
+			if (expire > 0 && expire &lt; new Date().getTime()) {
 				LS.removeItem(key);
 				return null;
 			}
@@ -829,18 +856,18 @@ hapj.ext = {};
 		 */
 		clean: function() {
 			var key, item, pos, expire;
-			for(var i = 0, l = localStorage.length; i < l; i++) {
+			for(var i = 0, l = localStorage.length; i &lt; l; i++) {
 				key = localStorage.key(0);
 				if (key.indexOf(prefix) !== 0) {
 					continue;
 				}
 				item = LS.getItem(key);
 				pos = item.indexOf("\n");
-				if (pos < 0) {
+				if (pos &lt; 0) {
 					continue;
 				}
 				expire = item.substring(0, pos);
-				if (expire > 0 && expire < new Date().getTime()) {
+				if (expire > 0 && expire &lt; new Date().getTime()) {
 					LS.removeItem(key);
 				}
 			}
@@ -964,7 +991,7 @@ hapj.ext = {};
 		match = rwebkit.exec( ua ) ||
 			ropera.exec( ua ) ||
 			rmsie.exec( ua ) ||
-			ua.indexOf('compatible') < 0 && rmozilla.exec( ua ) ||
+			ua.indexOf('compatible') &lt; 0 && rmozilla.exec( ua ) ||
 			[];
 		return /** @lends hapj.browser */{
 			/**
@@ -986,7 +1013,7 @@ hapj.ext = {};
 /**
  * hapj 日志
  * @class hapj.log
- * @author ronnie<dengxiaolong@jiehun.com.cn>
+ * @author ronnie&lt;dengxiaolong@jiehun.com.cn>
  * @version 1.0
  */
 !function(H, _d){
@@ -1275,7 +1302,7 @@ hapj.ext = {};
 	 */
 	H.staticHost = (function(){
 		var ss = _d.getElementsByTagName('script');
-		for(var i = 0, l = ss.length; i < l; i++){
+		for(var i = 0, l = ss.length; i &lt; l; i++){
 			var s = ss[i];
 			if (!s.src) continue;
 			if (/\/hapj\./.test(s.src)) {
@@ -1446,7 +1473,7 @@ hapj.ext = {};
 			}
 			var obj = ctx.getElementsByTagName(tag);
 			if(tagArr.length===0) return obj;
-			if(findArr.length<=1) return false;
+			if(findArr.length&lt;=1) return false;
 			var newObj = [];
 			var i = 0;
 			if(obj){
@@ -1620,7 +1647,7 @@ hapj.ext = {};
 			tag = (tag || '').toUpperCase();
 			this.each(function(){
 				var childs = this.childNodes;
-				for (var i = 0, l = childs.length; i < l; i++) {
+				for (var i = 0, l = childs.length; i &lt; l; i++) {
 					if (undefined === childs[i].tagName) 
 						continue;
 					if (!tag || childs[i].tagName == tag) {
@@ -1699,15 +1726,15 @@ hapj.ext = {};
 		return elems;
 	},
 	rCRLF = /\r?\n/g,
-	rtagName = /<([\w:]+)/,
+	rtagName = /&lt;([\w:]+)/,
 	wrapMap = {
-		option: [ 1, '<select multiple="multiple">', '</select>' ],
-		legend: [ 1, '<fieldset>', '</fieldset>' ],
-		thead: [ 1, '<table>', '</table>' ],
-		tr: [ 2, '<table><tbody>', '</tbody></table>' ],
-		td: [ 3, '<table><tbody><tr>', '</tr></tbody></table>' ],
-		col: [ 2, '<table><tbody></tbody><colgroup>', '</colgroup></table>' ],
-		area: [ 1, '<map>', '</map>' ],
+		option: [ 1, '&lt;select multiple="multiple">', '&lt;/select>' ],
+		legend: [ 1, '&lt;fieldset>', '&lt;/fieldset>' ],
+		thead: [ 1, '&lt;table>', '&lt;/table>' ],
+		tr: [ 2, '&lt;table>&lt;tbody>', '&lt;/tbody>&lt;/table>' ],
+		td: [ 3, '&lt;table>&lt;tbody>&lt;tr>', '&lt;/tr>&lt;/tbody>&lt;/table>' ],
+		col: [ 2, '&lt;table>&lt;tbody>&lt;/tbody>&lt;colgroup>', '&lt;/colgroup>&lt;/table>' ],
+		area: [ 1, '&lt;map>', '&lt;/map>' ],
 		_default: [ 0, '', '' ]
 	},
 	cssreg = /([A-Z])/g,
@@ -1730,7 +1757,7 @@ hapj.ext = {};
 		}
 	})(),
 	indexOf = function(arr, val) {
-		for(var i = 0, l = arr.length; i < l; i++) {
+		for(var i = 0, l = arr.length; i &lt; l; i++) {
 			if (arr[i] == val) {
 				return i;
 			}
@@ -1815,9 +1842,9 @@ hapj.ext = {};
 	  			return null;
 	  		}
 	  		var isScript = false;
-	  		if (H.browser.type == 'msie' && typeof html == 'string' && /^\s*<script /.test(html)) {
+	  		if (H.browser.type == 'msie' && typeof html == 'string' && /^\s*&lt;script /.test(html)) {
 				isScript = true;
-				html = '<div>&nbsp;</div>' + html;
+				html = '&lt;div>&nbsp;&lt;/div>' + html;
 			}
 			var scripts = [];
   			this.each(function(){
@@ -1855,7 +1882,7 @@ hapj.ext = {};
 			});
 			if (enableScript && scripts.length) {
 				H.array.each(scripts, function(){
-					var text = ( this.text || this.textContent || this.innerHTML || "" ).replace( /^\s*<!(?:\[CDATA\[|\-\-)/, "/*$0*/" );
+					var text = ( this.text || this.textContent || this.innerHTML || "" ).replace( /^\s*&lt;!(?:\[CDATA\[|\-\-)/, "/*$0*/" );
 					if ( text && /\S/.test( text ) ) {
 						/* jshint ignore:start */
 						( window.execScript || function( text ) {
@@ -1892,10 +1919,10 @@ hapj.ext = {};
 				}
 			}
 			var isScript = false;
-			// ie浏览器需要做一些兼容，比如<script标签，不能直接光有script标签，否则会报错
-			if (H.browser.type == 'msie' && typeof html == 'string' && /^\s*<script /.test(html)) {
+			// ie浏览器需要做一些兼容，比如&lt;script标签，不能直接光有script标签，否则会报错
+			if (H.browser.type == 'msie' && typeof html == 'string' && /^\s*&lt;script /.test(html)) {
 				isScript = true;
-				html = '<div>&nbsp;</div>' + html;
+				html = '&lt;div>&nbsp;&lt;/div>' + html;
 			}
 			this.each(function(){
 				if (typeof html == 'string') {
@@ -1976,14 +2003,14 @@ hapj.ext = {};
 		/**
 		 * 获取第一个元素的高度（包括margin）
 		 * @param {Boolean} [margin=undefine] 是否包括外围高度。有三种情况：
-		 * <dl>
-		 *  <dt>true</dt>
-		 *  <dd>offsetHeight+marginTop+marginBottom</dd>
-		 *  <dt>false</dt>
-		 *  <dd>clientHeight</dd>
-		 *  <dt>undefined</dt>
-		 *  <dd>offsetHeight</dd>
-		 * </dl>
+		 * &lt;dl>
+		 *  &lt;dt>true&lt;/dt>
+		 *  &lt;dd>offsetHeight+marginTop+marginBottom&lt;/dd>
+		 *  &lt;dt>false&lt;/dt>
+		 *  &lt;dd>clientHeight&lt;/dd>
+		 *  &lt;dt>undefined&lt;/dt>
+		 *  &lt;dd>offsetHeight&lt;/dd>
+		 * &lt;/dl>
 		 * @return {Int}
 		 */
 		height:function(margin) {
@@ -2004,14 +2031,14 @@ hapj.ext = {};
 		/**
 		 * 获取第一个元素的宽度（包括margin的宽度）
 		 * @param {Boolean} [margin=undefined] 是否包括外围高度。有三种情况：
-		 * <dl>
-		 *  <dt>true</dt>
-		 *  <dd>offsetHeight+marginTop+marginBottom</dd>
-		 *  <dt>false</dt>
-		 *  <dd>clientHeight</dd>
-		 *  <dt>undefined</dt>
-		 *  <dd>offsetHeight</dd>
-		 * </dl>
+		 * &lt;dl>
+		 *  &lt;dt>true&lt;/dt>
+		 *  &lt;dd>offsetHeight+marginTop+marginBottom&lt;/dd>
+		 *  &lt;dt>false&lt;/dt>
+		 *  &lt;dd>clientHeight&lt;/dd>
+		 *  &lt;dt>undefined&lt;/dt>
+		 *  &lt;dd>offsetHeight&lt;/dd>
+		 * &lt;/dl>
 		 * @return {Int}
 		 */
 		width: function(margin) {
@@ -2032,12 +2059,12 @@ hapj.ext = {};
 		/**
 		 * 获取元素的左边距和上边距
 		 * @return {Object} 返回值包含top和left：
-		 * <dl>
-		 *  <dt>top</dt>
-		 *  <dd>上边距</dd>
-		 *  <dt>left</dt>
-		 *  <dd>左边距</dd>
-		 * </dl>
+		 * &lt;dl>
+		 *  &lt;dt>top&lt;/dt>
+		 *  &lt;dd>上边距&lt;/dd>
+		 *  &lt;dt>left&lt;/dt>
+		 *  &lt;dd>左边距&lt;/dd>
+		 * &lt;/dl>
 		 */
 		offset: function() {
 			var elem = this[0];
@@ -2080,7 +2107,7 @@ hapj.ext = {};
 				return null;
 			}
 			var params = {};
-			for(var i = 0, l = elements.length; i < l; i++) {
+			for(var i = 0, l = elements.length; i &lt; l; i++) {
 				var f = elements[i];
 				if (!f.name || f.disabled || f.nodeName == 'OBJECT') continue;
 				var name = f.name, multi = true;
@@ -2093,7 +2120,7 @@ hapj.ext = {};
 						if (multi) {
 							params[name] = [];
 						}
-		                for (var j = 0, m = f.options.length; j < m; j++) {
+		                for (var j = 0, m = f.options.length; j &lt; m; j++) {
 		                    var option = f.options[j], val = (undefined === option.value ? option.text : option.value);
 		                    
 		                    if (option.selected) {
@@ -2162,7 +2189,7 @@ hapj.ext = {};
 				});
 			}, curVal = from,
 			toFunc = function() {
-				if ( (offset > 0 && curVal >= to) || (offset < 0 && curVal <= to)) {
+				if ( (offset > 0 && curVal >= to) || (offset &lt; 0 && curVal &lt;= to)) {
 					setVal(curVal);
 					curVal -= offset;
 					setTimeout(toFunc, timeSize);
@@ -2187,7 +2214,7 @@ hapj.ext = {};
 			elem.focus() ;
 			var len = elem.value.length;
 			if(len > 0){
-				if(num && num < len) {
+				if(num && num &lt; len) {
 					len = num;
 				}
 				if (document.selection) {
@@ -2211,7 +2238,7 @@ hapj.ext = {};
  * @example 
  * 示例
 // 队列方法1
-for(var i = 0; i < 1000; i++) {
+for(var i = 0; i &lt; 1000; i++) {
 	hapj.ajax({
 		url:'/foo.php?i=' + i,
 		method:'post',
@@ -2226,7 +2253,7 @@ hapj.ajax.endQueue();
 
 // 队列方法2
 hapj.ajax.startQueue();
-for(var i = 0; i < 1000; i++) {
+for(var i = 0; i &lt; 1000; i++) {
 	hapj.ajax({
 		url:'/foo.php?i=' + i,
 		method:'post',
@@ -2278,40 +2305,40 @@ hapj.ajax.endQueue();
 	
 	/**
 	 * @constructor hapj.ajax
-	 * @param {Object} options 配置参数，包括如下参数<br/>
-	 * <dl>
-	 * 	<dt>url</dt>
-	 *  <dd>网址</dd>
-	 * 	<dt>type</dt>
-	 *  <dd>网络请求方法，如get、post等，默认为get。</dd>
-	 * 	<dt>data</dt>
-	 *  <dd>发送的数据，如果为get方法，将会串行化数据附加到url里边作为参数发送。如果为post方法，则直接将数据post到服务器。可以是字符串或对象。</dd>
-	 * 	<dt>dataType</dt>
-	 *  <dd>接收的数据的格式，可以是html、json等。默认为json</dd>
-	 * 	<dt>success(ret)</dt>
-	 *  <dd>请求成功后将调用的方法。</dd>
-	 * 	<dt>error(code)</dt>
-	 *  <dd>请求失败后将调用的方法。其中code为http状态码，如404等。</dd>
-	 * 	<dt>queue</dt>
-	 *  <dd>是否启用队列支持。默认为false。</dd>
-	 * 	<dt>async</dt>
-	 *  <dd>是否发出异步请求。默认为true。如果为false，则只有等到页面请求完毕后才会执行后面的代码。</dd>
-	 * </dl>
+	 * @param {Object} options 配置参数，包括如下参数&lt;br/>
+	 * &lt;dl>
+	 * 	&lt;dt>url&lt;/dt>
+	 *  &lt;dd>网址&lt;/dd>
+	 * 	&lt;dt>type&lt;/dt>
+	 *  &lt;dd>网络请求方法，如get、post等，默认为get。&lt;/dd>
+	 * 	&lt;dt>data&lt;/dt>
+	 *  &lt;dd>发送的数据，如果为get方法，将会串行化数据附加到url里边作为参数发送。如果为post方法，则直接将数据post到服务器。可以是字符串或对象。&lt;/dd>
+	 * 	&lt;dt>dataType&lt;/dt>
+	 *  &lt;dd>接收的数据的格式，可以是html、json等。默认为json&lt;/dd>
+	 * 	&lt;dt>success(ret)&lt;/dt>
+	 *  &lt;dd>请求成功后将调用的方法。&lt;/dd>
+	 * 	&lt;dt>error(code)&lt;/dt>
+	 *  &lt;dd>请求失败后将调用的方法。其中code为http状态码，如404等。&lt;/dd>
+	 * 	&lt;dt>queue&lt;/dt>
+	 *  &lt;dd>是否启用队列支持。默认为false。&lt;/dd>
+	 * 	&lt;dt>async&lt;/dt>
+	 *  &lt;dd>是否发出异步请求。默认为true。如果为false，则只有等到页面请求完毕后才会执行后面的代码。&lt;/dd>
+	 * &lt;/dl>
 	 * @returns {Object} 返回一个对象，该对象包含的内容如下：
-	 *  <h4>属性</h4>
-	 *  <dl>
-	 * 	<dt>req</dt>
-	 *  <dd>XmlHttpRequest对象</dd>
-	 * 	<dt>id</dt>
-	 *  <dd>在页面中ajax请求时分配的id</dd>
-	 * 	<dt>options</dt>
-	 *  <dd>请求的参数配置</dd>
-	 *  </dl>
-	 *  <h4>方法</h4>
-	 *  <dl>
-	 * 	<dt>stop</dt>
-	 *  <dd>中断请求</dd>
-	 * </dl>
+	 *  &lt;h4>属性&lt;/h4>
+	 *  &lt;dl>
+	 * 	&lt;dt>req&lt;/dt>
+	 *  &lt;dd>XmlHttpRequest对象&lt;/dd>
+	 * 	&lt;dt>id&lt;/dt>
+	 *  &lt;dd>在页面中ajax请求时分配的id&lt;/dd>
+	 * 	&lt;dt>options&lt;/dt>
+	 *  &lt;dd>请求的参数配置&lt;/dd>
+	 *  &lt;/dl>
+	 *  &lt;h4>方法&lt;/h4>
+	 *  &lt;dl>
+	 * 	&lt;dt>stop&lt;/dt>
+	 *  &lt;dd>中断请求&lt;/dd>
+	 * &lt;/dl>
 	 */
 	H.ajax = function(options){
 		var hs = H.extend({}, headers), cfg = H.extend({}, defaults);
@@ -2504,7 +2531,7 @@ hapj.ajax.endQueue();
 	 * @return {Mixed}
 	 */
 	tmpl = function(content, values) {
-		if (content.indexOf('{') < 0) {
+		if (content.indexOf('{') &lt; 0) {
 			if (undefined === values) {
 				return function(){
 					return content;
@@ -2551,7 +2578,7 @@ hapj.ajax.endQueue();
 			ret += tmpl(content.substr(0, pos), values);
 			
 			var fc = tmpl(content.substr(sepos + 1, epos - sepos - 1));
-			for(var i = 0, l = values[varname].length; i < l; i++) {
+			for(var i = 0, l = values[varname].length; i &lt; l; i++) {
 				ret += fc(values[varname][i]);
 			}
 			
@@ -3018,4 +3045,26 @@ hapj.ajax.endQueue();
 
 // 注意，最后需要调用hapj.start()方法启动所有函数的初始化。
 // 取消 hapj.hook.set('dom.ready')的做法
-//hapj.start();
+//hapj.start();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+<h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="hapj.html">hapj</a></li><li><a href="hapj.ajax.html">ajax</a></li><li><a href="hapj.array.html">array</a></li><li><a href="hapj.browser.html">browser</a></li><li><a href="hapj.cache.html">cache</a></li><li><a href="hapj.conf.html">conf</a></li><li><a href="hapj.date.html">date</a></li><li><a href="hapj.hook.html">hook</a></li><li><a href="hapj.json.html">json</a></li><li><a href="hapj.log.html">log</a></li><li><a href="hapj.object.html">object</a></li><li><a href="hapj.page.html">page</a></li><li><a href="hapj.string.html">string</a></li><li><a href="hapj.ui.html">ui</a></li><li><a href="hapj.ui.ajaxable.html">ajaxable</a></li><li><a href="hapj.ui.node.html">node</a></li><li><a href="hapj.ui.node.render.html">render</a></li><li><a href="hapj.ui.node.tmpl.html">tmpl</a></li><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.fn.html">fn</a></li><li><a href="jQuery.fn.ajaxable.html">ajaxable</a></li><li><a href="jQuery.fn.floatable.html">floatable</a></li><li><a href="jQuery.fn.menuable.html">menuable</a></li><li><a href="jQuery.fn.switchable.html">switchable</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Mon Sep 22 2014 18:58:42 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

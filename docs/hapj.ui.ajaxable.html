@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JSDoc: Class: ajaxable</title>
+
+<script src="scripts/prettify/prettify.js"> </script>
+<script src="scripts/prettify/lang-css.js"> </script>
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+<link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+<h1 class="page-title">Class: ajaxable</h1>
+
+
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="hapj.html">hapj</a><a href="hapj.ui.html">.ui</a>.</span>
+    
+    ajaxable
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="ajaxable"><span class="type-signature"></span>new ajaxable<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        实现元素的异步化请求
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.ajaxable.js.html">ui/hapj.ajaxable.js</a>, <a href="hapj.ajaxable.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="ajaxForm"><span class="type-signature">&lt;static> </span>ajaxForm<span class="signature">(table, options)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        表单的异步请求也非常多，在我们的体系下，所有的请求都是基于ajax请求发出的。这里我们有一些假设的前提：
+		<ol>
+		<li>数据都是以json格式返回来。</li>
+		<li>数据返回的是一个对象。有err和data两个键。</li>
+		<li>如果err为空或者err中包含ok字符串，认为这个表单提交动作是成功的，否则为失败。</li>
+		</ol>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>table</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HtmlElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">默认可以不传入任何值。具有如下参数：<h4>函数</h4><dl> <dt>pack:<em>function(options)</em></dt> <dd>提交数据前对表单的数据进行整理和封装。默认已经对type=password的表单项进行了md5加密，没有特殊要求都可以不适用此函数。</dd> <dt>ok:<em>function(data)</em></dt> <dd>表单提交成功时调用的函数。</dd> <dt>error:<em>function(code, desc)</em></dt> <dd>表单提交失败是调用的函数。</dd> <dt>confirm:<em>string | function</em></dt> <dd>确认字符串。如果是字符串，会弹出提示框让用户确认，用户确认后才会继续后面的操作。如果是函数，返回为false时，就不会继续后面的操作。</dd></dl></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.ajaxable.js.html">ui/hapj.ajaxable.js</a>, <a href="hapj.ajaxable.js.html#line139">line 139</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> 
+&lt;form method="post" action="/static/test/cities.html" id="formAdd"&gt;
+	&lt;input type="hidden" name="username" value="hello"/&gt;
+	&lt;input type="password" name="pwd" value="pass"/&gt;
+	&lt;input type="submit" value="submit"/&gt;
+&lt;/form&gt;
+&lt;script&gt;
+$('#formAdd').ajaxable({
+	ok:function() {
+		
+	}
+});
+&lt;/script&gt;</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="ajaxImg"><span class="type-signature">&lt;static> </span>ajaxImg<span class="signature">(img, options)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        实现图片的异步化加载
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>img</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HtmlElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">选项<dl> <dt>cache</dt> <dd>是否缓存，默认为false</dd> <dt>timeKey</dt> <dd>用来表示时间的key，默认为t</dd></dl></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.ajaxable.js.html">ui/hapj.ajaxable.js</a>, <a href="hapj.ajaxable.js.html#line175">line 175</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> 这部分最典型的应用场景就是解决图片验证码的更新问题。
+&lt;img id="vCode" src="http://192.168.0.249:8041/util/vcode?_vkey=b514eddd24826b3da30a08a6fa80f3a5"/&gt;&lt;a href="" id="refreshVCode"&gt;Refresh&lt;a&gt;
+&lt;script&gt;
+var vCode = $('#vCode');
+$('#refreshVCode').click(function() {
+	vCode.ajaxable();
+	// or hapj.ui.ajaxable.ajaxImg(hapj.ui._id('vCode'));
+});
+&lt;/script&gt;</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="ajaxLink"><span class="type-signature">&lt;static> </span>ajaxLink<span class="signature">(link, options)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        ajax化一个链接有一些单独出来的链接也是需要异步化成post请求提交的。因此单独链接也提供了ajaxable的方法，不同的是，这里不会对链接的格式进行检查。
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>link</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HtmlElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">默认可以不传入任何值。具有如下参数：<dl> <dt>href:<em>string | function</em></dt> <dd>动态获取连接的href，如果不指定，则使用链接自己的href。可以是字符串或函数。如果是函数，当前指针指向对应的元素。</dd> <dt>ok:<em>function(data)</em></dt> <dd>表单提交成功时调用的函数。</dd> <dt>error:<em>function(code, desc)</em></dt> <dd>表单提交失败是调用的函数。</dd> <dt>confirm:<em>String | Function</em></dt> <dd>确认字符串，当要执行之前会调用弹出确认框，用户确认了才继续执行。如果confirm是函数，则会将当前点击的元素作为this指针执行此confirm函数并执行，将返回的结果作为确认字符串。另外，该确认字符串可以通过元素设定confirm属性来设置。</dd></dl></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.ajaxable.js.html">ui/hapj.ajaxable.js</a>, <a href="hapj.ajaxable.js.html#line405">line 405</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> 
+也可以通过如下的方法直接对一个链接进行异步请求处理。
+hapj.ui.ajaxable.ajaxLink(link, options)
+
+&lt;a href="/unlock" id="linkPost"&gt;解除绑定&lt;/a&gt;
+&lt;script&gt;
+	$('#linkPost').ajaxable({
+		ok: function(data) {
+			location.reload();
+		}
+	});
+ &lt;/script&gt;</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="ajaxPanel"><span class="type-signature">&lt;static> </span>ajaxPanel<span class="signature">(pnl, options)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        ajax化一个面板
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>pnl</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HtmlElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.ajaxable.js.html">ui/hapj.ajaxable.js</a>, <a href="hapj.ajaxable.js.html#line294">line 294</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="ajaxSelect"><span class="type-signature">&lt;static> </span>ajaxSelect<span class="signature">(select, options)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        ajax化一个select控件
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>select</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HtmlElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">默认可以不传入任何值。具有如下参数：<dl> <dt>url</dt> <dd>切换下拉框选项后，需要访问的url。可以传入一个变量{value}，异步请求时会将其替换为下拉框当前选中的值。另外，也可以直接给下拉框顶一个属性ajax-url来定义异步请求的url。</dd> <dt>dataType</dt> <dd>返回数据的格式，默认为json</dd> <dt>target</dt> <dd>返回数据后用来处理数据的对象，默认会使用当前对象的下一个DOM节点。</dd> <dt>pack</dt> <dd>对返回数据进行处理的函数。</dd> <dt>success</dt> <dd>将返回数据进行处理的函数。默认已经有一个处理函数，其逻辑如下：<br/>
+如果返回数据被处理成[{name:’name1’, value:’value1’]}的形式，并且dataType为json格式，target也是一个下拉框，那么会将数据自动加载到target作为选项；如果dataType为html，会自动将target的innerHTML设置为返回的数据。</dd> <dt>ok:<em>function(data)</em></dt> <dd>表单提交成功时调用的函数。</dd> <dt>error:<em>function(code, desc)</em></dt> <dd>表单提交失败是调用的函数。</dd></dl></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.ajaxable.js.html">ui/hapj.ajaxable.js</a>, <a href="hapj.ajaxable.js.html#line241">line 241</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>&lt;select id="selCity" ajax-url="/static/test/cities.html?pid={value}"&gt;
+	&lt;option value="110000"&gt;北京市&lt;/option&gt;
+	&lt;option value="210000"&gt;上海市&lt;/option&gt;
+&lt;/select&gt;&lt;select name="city_id"&gt;&lt;/select&gt;
+&lt;script&gt;
+	$('#cities').ajaxable({
+		pack: function(data) {
+			var ret = [];
+			hapj.each(data.cities, function(id) {
+				ret.push({name:data.cities[id], value:id});
+			};
+			return ret;
+		}
+	});
+&lt;/script&gt;</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="ajaxTable"><span class="type-signature">&lt;static> </span>ajaxTable<span class="signature">(table, options)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        表格的异步请求因为所有对数据的修改都是需要用到post方法的，有些操作是通过链接去执行，这就要求我们将链接转化为post请求，最终完成这个操作。表格的异步请求处理流程是：如果点击了链接，链接的href最后一个斜杠后面的字符串如果是以_开始的，那么这个请求就会转化为一个POST的ajax请求。
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>table</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">默认可以不传入任何值。具有如下参数：<dl> <dt>href:<em>string | function</em></dt> <dd>动态获取连接的href，如果不指定，则使用链接自己的href。可以是字符串或函数。如果是函数，当前指针指向对应的元素。</dd> <dt>ok:<em>function(data)</em></dt> <dd>表单提交成功时调用的函数。</dd> <dt>error:<em>function(code, desc)</em></dt> <dd>表单提交失败是调用的函数。</dd> <dt>confirm:<em>String | Function</em></dt> <dd>确认字符串，当要执行之前会调用弹出确认框，用户确认了才继续执行。如果confirm是函数，则会将当前点击的元素作为this指针执行此confirm函数并执行，将返回的结果作为确认字符串。另外，该确认字符串可以通过元素设定confirm属性来设置。</dd> <dt>rule:<em>RegExp</em></dt> <dd>链接的url规则，必须是正则表达式，当链接符合此表达式，才会执行ajax异步请求。默认规则为：/\/_[^\/]\w+($|\?.*)/ 。</dd></dl></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.ajaxable.js.html">ui/hapj.ajaxable.js</a>, <a href="hapj.ajaxable.js.html#line363">line 363</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code> 
+如果有一块区域的链接需要进行同样的异步请求，但是这个区域不是用table来构造的，那么，可以通过如下的方法直接对其他类型的DOM节点（如div）进行异步请求处理。
+hapj.ui.ajaxable.ajaxTable(table, options)
+
+&lt;table id="cateList"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;ID&lt;/th&gt;
+			&lt;th&gt;名称&lt;/th&gt;
+			&lt;th&gt;英文名称&lt;/th&gt;
+			&lt;th&gt;是否使用&lt;/th&gt;
+			&lt;th&gt;操作&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+	&lt;tbody&gt;
+…
+&lt;script&gt;
+ 	hapj(function(H) {
+		H.ui.id('cateList').ajaxable({
+			ok: function(data) {
+				location.reload();
+			},
+			confirm: function(){
+				if (this.className == 'del') {
+					return '你确定要删除吗？'；
+} else {
+	return '你确定要设为禁用吗？';
+}
+}
+		});
+	});
+ &lt;/script&gt;</code></pre>
+
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+<h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="hapj.html">hapj</a></li><li><a href="hapj.ajax.html">ajax</a></li><li><a href="hapj.array.html">array</a></li><li><a href="hapj.browser.html">browser</a></li><li><a href="hapj.cache.html">cache</a></li><li><a href="hapj.conf.html">conf</a></li><li><a href="hapj.date.html">date</a></li><li><a href="hapj.hook.html">hook</a></li><li><a href="hapj.json.html">json</a></li><li><a href="hapj.log.html">log</a></li><li><a href="hapj.object.html">object</a></li><li><a href="hapj.page.html">page</a></li><li><a href="hapj.string.html">string</a></li><li><a href="hapj.ui.html">ui</a></li><li><a href="hapj.ui.ajaxable.html">ajaxable</a></li><li><a href="hapj.ui.node.html">node</a></li><li><a href="hapj.ui.node.render.html">render</a></li><li><a href="hapj.ui.node.tmpl.html">tmpl</a></li><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.fn.html">fn</a></li><li><a href="jQuery.fn.ajaxable.html">ajaxable</a></li><li><a href="jQuery.fn.floatable.html">floatable</a></li><li><a href="jQuery.fn.menuable.html">menuable</a></li><li><a href="jQuery.fn.switchable.html">switchable</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Mon Sep 22 2014 18:58:44 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

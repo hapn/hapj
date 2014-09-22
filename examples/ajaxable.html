@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<title>ajaxable</title>
+		<meta charset="utf-8"/>
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../src/hapj.js"></script>
+		<script src="../src/ui/hapj.ajaxable.js"></script>
+		
+	</head>
+	<body>
+		<ol>
+			<li>
+				<h2>图片异步加载</h2>
+				<img title="点击重新加载" style="cursor:pointer" src="http://bj.hapn.cc/util/vcode?_vkey=076b1c035a3473d4fe9211c78c735036" id="imgVcode"/>
+				<script>$('#imgVcode').click(function(){
+					$(this).ajaxable();
+				});</script>
+			</li>
+			
+			<li>
+				<h2>链接异步加载</h2>
+				<a href="/_async" id="linkAsync" confirm="确定要重新加载吗？">加载</a>
+				<script>
+					$('#linkAsync').ajaxable({
+						ok:function() {
+							
+						},
+						error:function() {
+							alert('');
+						}
+					});
+				</script>
+			</li>
+			
+			<li>
+				<h2>表单异步加载</h2>
+				<form method="post" action="/">
+					
+				</form>
+			</li>
+		</ol>
+	</body>
+</html>
