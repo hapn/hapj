@@ -9,7 +9,7 @@
  * <script>(function(d){var h=hapj=function(u){if(typeof u=='string'){var n=d.createElement('script'),s=d.getElementsByTagName('script')[0];n.async=n.defer=true;n.src=u;s.parentNode.insertBefore(n, s);}else{h.c.apply(null, arguments)}};h.a=[];h.c=function(){h.a.push(arguments)};})(document);</script>
  **/
 // 如果在页面上没有检测到hapj，则重新初始化
-if (!('hapj' in window)) {
+if (!window.hapj) {
 	var hapj;
 	!function(d){
 		'use strict';
@@ -29,6 +29,7 @@ if (!('hapj' in window)) {
 			h.a.push(arguments);
 		};
 	}(document);
+	
 }
 
 // DOM加载完毕处理的事件
@@ -929,7 +930,7 @@ hapj.ext = {};
 	'use strict';
 	
 	var _we = window.onerror;
-	onerror = function(msg, url, line) {
+	window.onerror = function(msg, url, line) {
 		if (line === 0)  {
 			return;
 		}
@@ -1021,7 +1022,7 @@ hapj.ext = {};
 		/**
 		 * 目前所处的模式，默认为开发模式。在开发模式和在线模式两种情况下，调试和报错的情况都会不一样。如果检测到浏览器支持firebug，则会启用firebug来进行相关信息的调试。
 		 */
-		mode: this.DEVELOP_MODE,
+		mode: 2,
 		/**
 		 * 指定发生严重错误时会将错误信息作为参数访问到的url，该url会将js的错误信息报告给服务器端。
 		 */
@@ -1550,7 +1551,7 @@ hapj.ext = {};
 	});
 	
 	/**
-	 * @constructor hapj.ui.node
+	 * @class hapj.ui.node
 	 * @description 通过hapj.ui.id和hapj.ui.tag等方法，会返回一个这样的实例，用这个实例来进行相关的操作。hapj.ui.node对象支持push操作，有length对象，能像数组一样通过下标访问。
 	 * hapj.ui.node的原型为hapj.ui.fn，所以hapj.ui.fn的所有属性都能通过hapj.ui.node的实例调用到。
 	 */
@@ -1670,7 +1671,6 @@ hapj.ext = {};
 
 /**
  * hapj ui 样式处理
- * @class hapj.ui.node
  */
 !function(H, _w, _d, undefined){
 	'use strict';
@@ -2602,8 +2602,6 @@ hapj.ajax.endQueue();
 	}, 
 	/**
 	 * 编译
-	 * @method compile
-	 * @memberof hapj.tmpl
 	 * @param {String} content
 	 * @param {Object} values
 	 */
@@ -2642,8 +2640,55 @@ hapj.ajax.endQueue();
 	};
 	
 	/**
-	 * 将dom节点当成模板容器渲染数据
-	 * @class hapj.ui.node.tmpl
+	 * 将内容作为模板进行编译，返回编译后的结果
+	 * @function hapj.ui.node.tmpl
+	 * @param {Object} values 对象，用来替代模板里的数据。如果不传入任何参数，则会返回编译后的函数，这种情况使用于需要对很将很多对象传入模板进行解析
+	 * @example
+注意，如果页面里边有一些内容需要用js来渲染html，则最好采用此种方法，将html放在一个隐藏的html控件里边，如script、
+div、textarea等。鼓励使用script标签，其type设置成text/x-hapj-tmpl。
+普通变量写成{varname}的形式。另外，该模板支持循环，基本格式为{#foreach items}{name}{#endforeach}，其中items
+是传禁区的values中的一个键，其值可以是数组或对象。在foreach中的变量名，对应的是循环items时每个元素的变量值。
+下面是一个具体使用时的例子:
+&lt;script type="text/x-hapj-tmpl" id="tmpl"&gt;
+	&lt;img src="{url}"&gt;
+	&lt;a href="{link}"&gt;{name}&lt;/a&gt;
+	&lt;p&gt;{desc}&lt;/p&gt;
+	&lt;ul&gt;{#foreach lists}&lt;li&gt;{name}&lt;/li&gt;{#endforeach}&lt;/ul&gt;
+&lt;/script&gt;
+&lt;ul id="photoList"&gt;&lt;/ul&gt;
+
+&lt;script&gt;
+	hapj(function(H){
+		var html = H.ui.id('templ').tmpl({
+			url:'/static/img/1.gif', 
+			link:'/photo/1111',
+			desc:'漂亮吧', 
+			name: '婚纱照',
+			lists: [{name:'张三'},{name:'李四'}]
+		});
+		H.ui.id('photoList').append(html);
+	});
+&lt;/script&gt;
+
+// 另一种用法：
+&lt;script&gt;
+hapj(function(H) {
+	var cFunc = H.ui.id('templ').tmpl();
+	H.ui.id('photoList').append(cFun({{
+		url:'/static/img/1.gif', 
+		link:'/photo/1111',
+		desc:'漂亮吧', 
+		name: '婚纱照'
+	}}))
+	.append(cFun({{
+		url:'/static/img/2.gif', 
+		link:'/photo/12111',
+		desc:'我最喜欢', 
+		name: '龙凤配'
+	}}));
+});
+&lt;/script&gt;
+
 	 */
 	H.ui.fn.tmpl = function(values) {
 		if (!this.length) return '';
@@ -2652,8 +2697,12 @@ hapj.ajax.endQueue();
 	
 	
 	/**
-	 * 将dom
-	 * @class hapj.ui.node.render
+	 * 该组件用来完成一个依赖于前后台合作完成页面模板渲染的功能。
+	 * @function hapj.ui.node.render
+	 * @param {String} url 指用来获取数据的页面地址
+	 * @param {String} id 模板id
+	 * @param {Function} packer 将返回的数据进行封装，便于模板渲染使用
+	 * @param {Function} callback 模板渲染完毕后的回调函数
 	 */
 	H.ui.fn.render = function(url, id, packer, callback) {
 		var self = this;

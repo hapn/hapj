@@ -17,10 +17,11 @@ module.exports = function(grunt) {
 			hapj: {
 				src: [
 			      'src/hapj.js',
-			      'src/test.js',
-			      'src/ui/hapj.menuable.js',
+			      'src/ui/hapj.ajaxable.js',
 			      'src/ui/hapj.floatable.js',
-			      'src/ui/hapj.switchable.js'
+			      'src/ui/hapj.menuable.js',
+			      'src/ui/hapj.switchable.js',
+			      'src/ui/hapj.selectable.js'
 				],
 				dest: 'dist/<%= pkg.name %>.js'
 			}
@@ -60,6 +61,12 @@ module.exports = function(grunt) {
 	          },
 	          src: ['Gruntfile.js', 'grunt/*.js']
 	        },
+	        md5: {
+	          src:['src/lib/hapj.md5.js', 'src/test.js'],
+	          options: {
+	        	  jshintrc: 'src/lib/.jshintrc'
+	          }
+	        },
 	        core: {
 	          src: '<%= concat.hapj.src %>'
 	        },
@@ -90,6 +97,6 @@ module.exports = function(grunt) {
 
 	// 默认被执行的任务列表。
 	grunt.registerTask('default', ['clean', 'jshint', 'jsdoc']);
-	grunt.registerTask('uglify', ['concat', 'uglify']);
+//	grunt.registerTask('uglify', ['concat', 'uglify']);
 
 };

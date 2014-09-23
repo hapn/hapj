@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>JSDoc: Class: date</title>
+<title>JSDoc: Class: selectable</title>
 
 <script src="scripts/prettify/prettify.js"> </script>
 <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-<h1 class="page-title">Class: date</h1>
+<h1 class="page-title">Class: selectable</h1>
 
 
 
@@ -27,9 +27,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="hapj.html">hapj</a>.</span>
+        <span class="ancestors"><a href="jQuery.html">jQuery</a><a href="jQuery.fn.html">.fn</a>.</span>
     
-    date
+    selectable
     </h2>
     
 </header>  
@@ -41,90 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="date"><span class="type-signature"></span>new date<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line626">line 626</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Methods</h3>
-        
-        <dl>
-            
-<dt>
-    <h4 class="name" id="format"><span class="type-signature">&lt;static> </span>format<span class="signature">(format, date)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id="selectable"><span class="type-signature"></span>new selectable<span class="signature">(options)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -132,7 +49,7 @@
     
     
     <div class="description">
-        格式化日期
+        主要用来将普通的下拉框组件(或ul)转化为可以自定义样式的下拉框组件。绑定到原有下拉框的事件也会起作用。
     </div>
     
 
@@ -166,15 +83,10 @@
 	
         <tr>
             
-                <td class="name"><code>format</code></td>
+                <td class="name"><code>options</code></td>
             
             
             <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
             
             </td>
             
@@ -182,30 +94,7 @@
             
             
             
-            <td class="description last"><dl> <dt>Y</dt> <dd>年份</dd> <dt>m</dt> <dd>月份</dd> <dt>d</dt> <dd>日期</dd> <dt>H</dt> <dd>时钟</dd> <dt>i</dt> <dd>分钟</dd> <dt>s</dt> <dd>秒钟</dd></dl></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">必须是日期，不提供则使用当前时间</td>
+            <td class="description last">配置参数，目前支持的有：<dl> <dt>selectedClassName:<em>string</em></dt> <dd>表示选中时的样式名称，默认为on</dd> <dt>showEvent:<em>string</em></dt> <dd>用来显示菜单的事件，可选值为mouseover、mouseenter、click，默认为click。</dd> <dt>pack:<em>function(o)</em></dt> <dd>用来设定选择选项后显示的文字<br/><label>o</label>被选中的option或被选中的li</dd> <dt>hideDelayTime:<em>Int</em></dt> <dd>隐藏延迟的时间，只有showEvent为mouseover或mouseenter才有效，如果该值小于0，则不会自动掩藏</dd> <dt>onShow:<em>function()</em></dt> <dd>显示时调用的事件</dd> <dt>onHide:<em>function()</em></dt> <dd>隐藏时调用的方法</dd> <dt>onChange:<em>function()</em></dt> <dd>更改时调用的方法</dd></dl></td>
         </tr>
 	
 	
@@ -236,7 +125,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line653">line 653</a>
+        <a href="hapj.selectable.js.html">ui/hapj.selectable.js</a>, <a href="hapj.selectable.js.html#line19">line 19</a>
     </li></ul></dd>
     
     
@@ -257,34 +146,45 @@
     
     
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">String</span>
-
-
-	</dd>
-</dl>
-
-        
     
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>hapj.date.format('Y-m-d')  // rutrn 2014-06-15</code></pre>
+    <pre class="prettyprint"><code>详细的例子参考<a href="../examples/selectable.html" target="_blank">例子</a>
+&lt;select&gt;
+	&lt;option&gt;条目1&lt;/option&gt;
+	&lt;option&gt;条目2&lt;/option&gt;
+	&lt;option&gt;条目3&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;script&gt;
+$('select').on('change', function(){
+	alert('change');
+}).selectable({
+	pack:function(o) {
+		return '搜索' + o.text;
+	}
+});
+&lt/script&gt;</code></pre>
 
     
 </dd>
 
-        </dl>
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -306,7 +206,7 @@
 <br clear="both">
 
 <footer>
-Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Tue Sep 23 2014 18:20:26 GMT+0800 (CST)
+Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Tue Sep 23 2014 18:20:27 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

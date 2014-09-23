@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<title>selectable</title>
+		<meta charset="utf-8"/>
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../src/hapj.js"></script>
+		<script src="../src/ui/hapj.selectable.js"></script>
+		
+		<style>
+			li dt,li dd,li ul,li li{padding:0;margin:0;}
+			li dt{background:#CCC;cursor:pointer;width:100px;text-align:center;height:40px;line-height:40px;display:block;}
+			li dt:hover{background:#DDD;}
+			li dt label{cursor:pointer;}
+			
+			li ul{list-style:none;position:absolute;}
+			li ul li{list-style:none;text-align:center;width:100px;height:30px;line-height:30px;cursor:pointer;background:#F0F0F0}
+			li ul li.on{background:#CCC;}
+			li ul li:hover{background:#FCFCFC}
+			
+		</style>
+		
+	</head>
+	<body>
+		<ol>
+			<li>
+				<h2>click模拟</h2>
+				<select id="selNumber">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+				
+				<script>$('#selNumber').on('change',function(){
+					console.log(this.value);
+				}).selectable({
+					
+				});</script>
+			</li>
+			<li>
+				<h2>mouseover模拟</h2>
+				<div style="width:100px">
+				<select id="selSubject">
+					<option value="1">语文</option>
+					<option value="2">数学</option>
+					<option value="3">英语</option>
+					<option value="4">政治</option>
+				</select>
+				</div>
+				
+				<script>$('#selSubject').selectable({
+					showEvent:'mouseenter',
+					hideDelayTime: 2000
+				});</script>
+			</li>
+			<li>
+				<h2>dl的mouseover模拟</h2>
+				<div style="width:100px">
+				<ul id="selCountry">
+					<li class="on"><a href="/cn/">中国</a></li>
+					<li>美国</li>
+					<li>意大利</li>
+					<li>俄罗斯</li>
+				</ul>
+				</div>
+				
+				<script>$('#selCountry').selectable({
+					showEvent:'mouseenter',
+					hideDelayTime: 2000
+				});</script>
+			</li>
+		</ol>
+	</body>
+</html>
