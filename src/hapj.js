@@ -1233,7 +1233,10 @@ hapj.ext = {};
 			}
 			img.src = node;
 			if (img.complete) {
-				if(!!callback)return callback.call(img);
+				if(!!callback) {
+					return callback.call(img);
+				}
+				return;
 			}
 			img.onload = function() {
 				!!callback && callback.call(this);

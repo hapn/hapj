@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<title>lazyload</title>
+		<meta charset="utf-8"/>
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../src/ui/hapj.lazyload.js"></script>
+		
+		<style>
+			img{display:block;}
+		</style>
+		
+	</head>
+	<body>
+		<ul>
+			<li>
+				<img hll="http://1.tthunbohui.cn/origin/720/376/72037649396723671063-600X400.png" style="width:600px;height:400px;"/>
+			</li>
+			<li>
+				<img hll="http://4.tthunbohui.cn/origin/378/235/37823514686665324611-548X240.jpg" style="width:548px;height:240px;"/>
+			</li>
+			<li>
+				<img hll="http://4.tthunbohui.cn/origin/592/900/59290061359492373952-500X334.jpg" style="width:500px;height:334px;"/>
+			</li>
+			<li>
+				<img hll="http://2.tthunbohui.cn/thumb/555/940/55594051890927594832-650X487.jpg" style="width:650px;height:487px;"/>
+			</li>
+			<li>
+				<img hll="http://2.tthunbohui.cn/thumb/724/062/72406258458047027152-650X487.jpg" style="width:650px;height:487px;"/>
+			</li>
+			<li>
+				<img hll="http://4.tthunbohui.cn/thumb/384/469/3844694819493869312-650X487.jpg" style="width:650px;height:487px;"/>
+			</li>
+			<li>
+				<img hll="http://1.tthunbohui.cn/thumb/321/944/32194408897437829613-650X487.jpg" style="width:650px;height:487px;"/>
+			</li>
+		</ul>
+		
+		<script>
+			$('ul').lazyload({
+				loadSrc:'http://1.tthunbohui.cn/crop/312/974/31297442048201752331-80X80.jpg'
+			});
+		</script>
+	</body>
+</html>
