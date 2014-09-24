@@ -22,7 +22,8 @@ module.exports = function(grunt) {
 			      'src/ui/hapj.menuable.js',
 			      'src/ui/hapj.switchable.js',
 			      'src/ui/hapj.selectable.js',
-			      'src/ui/hapj.lazyload.js'
+			      'src/ui/hapj.lazyload.js',
+			      'src/ui/hapj.suggestable.js'
 				],
 				dest: 'dist/<%= pkg.name %>.js'
 			}

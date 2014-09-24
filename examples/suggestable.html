@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<title>suggestation</title>
+		<meta charset="utf-8"/>
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../src/hapj.js"></script>
+		<script src="../src/ui/hapj.suggestable.js"></script>
+		<style>
+			.suggestion ul,.suggestion li{list-style:none;padding:0;margin:0;}
+			.suggestion li{background:#DDD;}
+			.suggestion li.on{background:#CCC;}
+		</style>
+	</head>
+	<body>
+		<ol>
+			<li>
+				<h2>数组</h2>
+				
+				<label>Email</label><input type="text" id="txtEmail"/>
+				
+				<script>
+					$('#txtEmail').suggestable({
+						items:['qq.com', 'hotmail.com', '163.com', '126.com'],
+						onSelect: function(text) {
+							this.value = text;
+						},
+						autoSearch:true,
+						searchPrefix: '@'
+					});
+				</script>
+			</li>
+			
+			<li>
+				<h2>远程</h2>
+				<label>城市</label><input type="text" id="txtCities"/>
+				
+				<script>
+					$('#txtCities').suggestable({
+						items:'./cities.json',
+						onWrapperData:function(ret){
+							return ret.cities;
+						},
+						getItem:function(city) {
+							return city.name;
+						},
+						onSelect: function(city) {
+							this.value = city.name;
+						},
+						autoSearch:true
+					});
+				</script>
+			</li>
+		</ol>
+	</body>
+</html>
