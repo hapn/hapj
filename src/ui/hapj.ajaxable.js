@@ -7,6 +7,27 @@
  **/
 !function($, H){
 	"use strict";
+	
+var _d = decodeURIComponent;
+function getKeyValue(from, kvTag, key) {
+	var arr = from.split('&'), i, l, ret = {};
+	for(i = 0, l = arr.length; i < l; i++ ) {
+		var tmp = arr[i].split(kvTag), k = _d($.trim(tmp[0]));
+		if (!k) continue;
+		if (k in ret) {
+			if (!$.isArray(ret[k])) {
+				ret[k] = [ret[k]];
+			}
+			ret[k].push(_d(tmp[1]));
+		} else {
+			ret[k] = _d(tmp[1]);
+		}
+	}
+	if (key) {
+		return key in ret ? ret[key] : null;
+	}
+	return ret;
+}
 var submitHandler = function(form, options) {
 	if (typeof options.beforeSubmit == 'function') {
 		options.beforeSubmit.call(form);
@@ -34,7 +55,7 @@ var submitHandler = function(form, options) {
 		}
 	}
 	var action = options.action || form.action || document.URL,
-	data = H.ui(form).param();
+	data = $(form).param();
 	
 	if (options.pack) {
 		options.pack.call(null, data);
@@ -98,10 +119,10 @@ ajaxPost = function(elem, options) {
 };
 
 /**
- * @class hapj.ui.ajaxable
+ * @namespace jQuery.ajaxable
  * @description 实现元素的异步化请求
  */
-H.ui.ajaxable = /** @lends hapj.ui.ajaxable*/{
+$.ajaxable = /** @lends jQuery.ajaxable*/{
 		/**
 		 * 表单的异步请求也非常多，在我们的体系下，所有的请求都是基于ajax请求发出的。这里我们有一些假设的前提：
 		<ol>
@@ -121,6 +142,8 @@ H.ui.ajaxable = /** @lends hapj.ui.ajaxable*/{
 		 *  <dd>表单提交失败是调用的函数。</dd>
 		 *  <dt>confirm:<em>string | function</em></dt>
 		 *  <dd>确认字符串。如果是字符串，会弹出提示框让用户确认，用户确认后才会继续后面的操作。如果是函数，返回为false时，就不会继续后面的操作。</dd>
+		 *  <dt>beforeSubmit:<em>Function</em></dt>
+		 *  <dd>在提交之前进行的处理</dd>
 		 * </dl>
 		 * @example 
 &lt;form method="post" action="/static/test/cities.html" id="formAdd"&gt;
@@ -139,10 +162,9 @@ $('#formAdd').ajaxable({
 	ajaxForm: function(form, options) {
 		options = options || {};
 		if (!options._submited_) {
-			var f = H.hook.get('form.submit');
-			H.ui.on(form, 'submit', f ? function(e){
+			$(form).submit(('beforeSubmit' in options) ? function(e){
 				options._submited_ = true; // 已经被提交了
-				return f.call(form, e, options);
+				return options.beforeSubmit.call(form, e, options);
 			} : function() {
 				options._submited_ = true;
 				submitHandler(form, options); // 已经被提交了
@@ -163,12 +185,12 @@ $('#formAdd').ajaxable({
 	 *  <dd>用来表示时间的key，默认为t</dd>
 	 * </dl>
 	 * @example 这部分最典型的应用场景就是解决图片验证码的更新问题。
-&lt;img id="vCode" src="http://192.168.0.249:8041/util/vcode?_vkey=b514eddd24826b3da30a08a6fa80f3a5"/&gt;&lt;a href="" id="refreshVCode"&gt;Refresh&lt;a&gt;
+&lt;img id="vCode" src="/util/vcode.jpg"/&gt;&lt;a href="" id="refreshVCode"&gt;Refresh&lt;a&gt;
 &lt;script&gt;
 var vCode = $('#vCode');
 $('#refreshVCode').click(function() {
 	vCode.ajaxable();
-	// or hapj.ui.ajaxable.ajaxImg(hapj.ui._id('vCode'));
+	// or jQuery.ajaxable.ajaxImg($('#vCode'));
 });
 &lt;/script&gt;
 	 */
@@ -182,14 +204,14 @@ $('#refreshVCode').click(function() {
 		
 		if (!o.cache) {
 			var pos = src.indexOf('?'), 
-				params = pos >= 0 ? H.lib.serial.getPair(src.substr(pos + 1)) : {};
+				params = pos >= 0 ? getKeyValue(src.substr(pos + 1)) : {};
 			if (o.timeKey in params) {
 				$.each(params, function(i){
 					if (i == o.timeKey) {
 						params[i] = new Date().getTime();
 					}
 				});
-				src = (pos > 0 ? src.substr(0, pos) + '?' : src) + H.lib.serial.toString(params, 'pair');
+				src = (pos > 0 ? src.substr(0, pos) + '?' : src) + $.params(params);
 			} else {
 				src = src + (pos > 0 ? '&' : '?') + o.timeKey + '=' + new Date().getTime();
 			}
@@ -229,7 +251,7 @@ $('#refreshVCode').click(function() {
 	$('#cities').ajaxable({
 		pack: function(data) {
 			var ret = [];
-			hapj.each(data.cities, function(id) {
+			$.each(data.cities, function(id) {
 				ret.push({name:data.cities[id], value:id});
 			};
 			return ret;
@@ -328,7 +350,7 @@ $('#refreshVCode').click(function() {
 	 * </dl>
 	 * @example 
 如果有一块区域的链接需要进行同样的异步请求，但是这个区域不是用table来构造的，那么，可以通过如下的方法直接对其他类型的DOM节点（如div）进行异步请求处理。
-hapj.ui.ajaxable.ajaxTable(table, options)
+jQuery.ajaxable.ajaxTable(table, options)
 
 &lt;table id="cateList"&gt;
 	&lt;thead&gt;
@@ -343,19 +365,17 @@ hapj.ui.ajaxable.ajaxTable(table, options)
 	&lt;tbody&gt;
 …
 &lt;script&gt;
- 	hapj(function(H) {
-		H.ui.id('cateList').ajaxable({
-			ok: function(data) {
-				location.reload();
-			},
-			confirm: function(){
-				if (this.className == 'del') {
-					return '你确定要删除吗？'；
-} else {
-	return '你确定要设为禁用吗？';
-}
-}
-		});
+	$('#cateList').ajaxable({
+		ok: function(data) {
+			location.reload();
+		},
+		confirm: function(){
+			if (this.className == 'del') {
+				return '你确定要删除吗？'；
+			} else {
+				return '你确定要设为禁用吗？';
+			}
+		}
 	});
  &lt;/script&gt;
 
@@ -391,7 +411,7 @@ hapj.ui.ajaxable.ajaxTable(table, options)
 	 * </dl>
 	 * @example 
 也可以通过如下的方法直接对一个链接进行异步请求处理。
-hapj.ui.ajaxable.ajaxLink(link, options)
+jQuery.ajaxable.ajaxLink(link, options)
 
 &lt;a href="/unlock" id="linkPost"&gt;解除绑定&lt;/a&gt;
 &lt;script&gt;
@@ -415,8 +435,8 @@ hapj.ui.ajaxable.ajaxLink(link, options)
  * <br/>
  * 这部分接口设计得比较灵活，可以通过两种方式调用：
  * <ol>
- * <li>直接使用hapj.ui.fn的函数ajaxable，这个函数会根据元素的nodeName来进行判断该使用哪种接口完成操作。该方法只有一个参数：ajaxable(options)，里边传入相关的配置项</li>
- * <li>直接使用定义到hapj.ui.ajaxable这个对象的具体函数来进行相关操作。该方法有两个参数：ajax[Form|Img|Select|Panel](node, options)，其中node为一个DOM节点，而不是hapj.ui.node对象，options也是配置项，和1完全一样。</li>
+ * <li>直接使用jQuery的函数ajaxable，这个函数会根据元素的nodeName来进行判断该使用哪种接口完成操作。该方法只有一个参数：ajaxable(options)，里边传入相关的配置项</li>
+ * <li>直接使用定义到jQuery.ajaxable这个对象的具体函数来进行相关操作。该方法有两个参数：ajax[Form|Img|Select|Panel](node, options)，其中node为一个DOM节点或jQuery对象，options也是配置项，和1完全一样。</li>
  * </ol>
  * 我们需要使表单（id=formAdd）提交支持异步操作，可以分别如下使用：<br/>
  * <ol>
@@ -462,4 +482,4 @@ $.fn.ajaxable = function(opt) {
 	return this;
 };
 
-}(jQuery, window.hapj);
+}(jQuery);

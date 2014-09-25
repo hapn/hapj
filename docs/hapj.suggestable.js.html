@@ -46,7 +46,7 @@ $('#suggestable').suggestable({
 	'use strict';
 	
 	var defaults = {
-		width:'auto',
+		width:'',
 		height:0,
 		className:'suggestion',
 		selectedClass:'on', // 选中后的样式名
@@ -104,6 +104,8 @@ $('#suggestable').suggestable({
 	 *  &lt;dd>在显示提示列表之前的事件。如果返回false，则不显示提示菜单&lt;br/>
 	 *  	&lt;em>value&lt;/em> 文本框里边的值
 	 *  &lt;/dd>
+	 *  &lt;dt>getItem&lt;em>function(item)&lt;/dt>
+	 *  &lt;dd>从items里边获取到显示的文字，如果设置，必须是一个函数，且返回字符串&lt;/dd>
 	 * &lt;/dl>
 	 * @example 
 $('#suggestable').suggestable({
@@ -125,13 +127,13 @@ $('#suggestable').suggestable({
 		}
 		
 		var pos = this.offset();
-		var elem = $('div');
+		var elem = $('&lt;div>');
 		elem.css({
 			display:'none',
 			position:'absolute',
 			left:pos.left + 'px',
-			top:(pos.top + self.height(true)) + 'px',
-			width:conf.width ? (isNaN(conf.width) ? conf.width : conf.width + 'px') : self.width(true) + 'px',
+			top:(pos.top + self.outerHeight()) + 'px',
+			width:conf.width ? (isNaN(conf.width) ? conf.width : conf.width + 'px') : self.outerWidth() + 'px',
 			height:conf.height ? conf.height + 'px' : 'auto'
 		}).attr({
 			'class':conf.className
@@ -140,7 +142,10 @@ $('#suggestable').suggestable({
 		var suggestion = new Suggestion(elem);
 		suggestion.selectedClass = conf.selectedClass;
 		
-		document.body.appendChild(elem[0]);
+		elem.appendTo(document.body);
+		$(document).click(function(){
+			elem.hide();
+		});
 		var items;
 		if (typeof conf.items == 'string') { // 是网址
 			var url = conf.items;
@@ -153,6 +158,7 @@ $('#suggestable').suggestable({
 				$.ajax({
 					url:url.replace('{value}', self.attr('value')),
 					method:'get',
+					dataType:'json',
 					success:function(ret) {
 						suggestion.items = conf.onWrapperData(ret);
 						callback.call(null, suggestion.items);
@@ -244,11 +250,11 @@ $('#suggestable').suggestable({
 	function Suggestion(elem) {
 		this.elem = elem;
 		var self = this;
-		this.elem.on('li', 'mouseover', function(e) {
+		this.elem.on('mouseover', 'li', function(e) {
 			var index = e.target.getAttribute('index');
 			self._index = index;
 			self._select(index);
-		}).on('li', 'click', function() {
+		}).on('click', 'li', function() {
 			self.onClick && self.onClick.call(null, self.get(true));
 		});
 		this._index = 0;
@@ -298,10 +304,10 @@ $('#suggestable').suggestable({
 			this.elem.hide();
 		},
 		html: function(html) {
-			this.elem.tag('ul').html(html).tag('li').each(function(i){
+			this.elem.find('ul').html(html).find('li').each(function(i){
 				this.setAttribute('index', i);
 			});
-			this._tags = this.elem.tag('li');
+			this._tags = this.elem.find('li');
 			this._index = 0;
 			this._select(0);
 		}
@@ -316,13 +322,13 @@ $('#suggestable').suggestable({
 </div>
 
 <nav>
-<h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="hapj.html">hapj</a></li><li><a href="hapj.ajax.html">ajax</a></li><li><a href="hapj.array.html">array</a></li><li><a href="hapj.browser.html">browser</a></li><li><a href="hapj.cache.html">cache</a></li><li><a href="hapj.conf.html">conf</a></li><li><a href="hapj.date.html">date</a></li><li><a href="hapj.hook.html">hook</a></li><li><a href="hapj.json.html">json</a></li><li><a href="hapj.log.html">log</a></li><li><a href="hapj.object.html">object</a></li><li><a href="hapj.page.html">page</a></li><li><a href="hapj.string.html">string</a></li><li><a href="hapj.ui.html">ui</a></li><li><a href="hapj.ui.ajaxable.html">ajaxable</a></li><li><a href="hapj.ui.node.html">node</a></li><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.fn.html">fn</a></li><li><a href="jQuery.fn.ajaxable.html">ajaxable</a></li><li><a href="jQuery.fn.floatable.html">floatable</a></li><li><a href="jQuery.fn.lazyload.html">lazyload</a></li><li><a href="jQuery.fn.menuable.html">menuable</a></li><li><a href="jQuery.fn.selectable.html">selectable</a></li><li><a href="jQuery.fn.suggestable.html">suggestable</a></li><li><a href="jQuery.fn.switchable.html">switchable</a></li></ul>
+<h2><a href="index.html">Index</a></h2><h3>Namespaces</h3><ul><li><a href="hapj.array.html">hapj.array</a></li><li><a href="hapj.browser.html">hapj.browser</a></li><li><a href="hapj.cache.html">hapj.cache</a></li><li><a href="hapj.conf.html">hapj.conf</a></li><li><a href="hapj.date.html">hapj.date</a></li><li><a href="hapj.json.html">hapj.json</a></li><li><a href="hapj.log.html">hapj.log</a></li><li><a href="hapj.object.html">hapj.object</a></li><li><a href="hapj.page.html">hapj.page</a></li><li><a href="hapj.string.html">hapj.string</a></li><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.ajaxable.html">jQuery.ajaxable</a></li><li><a href="jQuery.fn.html">jQuery.fn</a></li><li><a href="jQuery.verifiable.html">jQuery.verifiable</a></li></ul><h3>Classes</h3><ul><li><a href="hapj.html">hapj</a></li><li><a href="hapj.ajax.html">hapj.ajax</a></li><li><a href="hapj.ui.html">hapj.ui</a></li><li><a href="hapj.ui.fn.html">hapj.ui.fn</a></li><li><a href="jQuery.fn.ajaxable.html">jQuery.fn.ajaxable</a></li><li><a href="jQuery.fn.calendar.html">jQuery.fn.calendar</a></li><li><a href="jQuery.fn.floatable.html">jQuery.fn.floatable</a></li><li><a href="jQuery.fn.lazyload.html">jQuery.fn.lazyload</a></li><li><a href="jQuery.fn.menuable.html">jQuery.fn.menuable</a></li><li><a href="jQuery.fn.selectable.html">jQuery.fn.selectable</a></li><li><a href="jQuery.fn.suggestable.html">jQuery.fn.suggestable</a></li><li><a href="jQuery.fn.switchable.html">jQuery.fn.switchable</a></li><li><a href="jQuery.fn.verifiable.html">jQuery.fn.verifiable</a></li><li><a href="jQuery.verifiable.rules.html">jQuery.verifiable.rules</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Sep 24 2014 14:15:23 GMT+0800 (CST)
+Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Sep 25 2014 20:22:51 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

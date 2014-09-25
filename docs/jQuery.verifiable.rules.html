@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>JSDoc: Class: ui</title>
+<title>JSDoc: Class: rules</title>
 
 <script src="scripts/prettify/prettify.js"> </script>
 <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-<h1 class="page-title">Class: ui</h1>
+<h1 class="page-title">Class: rules</h1>
 
 
 
@@ -27,9 +27,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="hapj.html">hapj</a>.</span>
+        <span class="ancestors"><a href="jQuery.html">jQuery</a><a href="jQuery.verifiable.html">.verifiable</a>.</span>
     
-    ui
+    rules
     </h2>
     
 </header>  
@@ -41,7 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="ui"><span class="type-signature"></span>new hapj.ui<span class="signature">(selector, <span class="optional">ctx</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="rules"><span class="type-signature">&lt;private> </span>new jQuery.verifiable.rules<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -49,12 +49,7 @@
     
     
     <div class="description">
-        处理和界面相关的模块。如果为字符串，根据字符串前缀寻找匹配的元素，返回这些元素构成的hapj.ui.node对象。具体而言：
-1) 以#开头，返回指定id的元素
-2) 以.开头，返回指定类别的元素
-3) 其他，返回指定标签名的元素
-如果为一个dom节点，会构建一个包含该节点的hapj.ui.node对象。
-如果为一个包含length的对象，会将其每一个元素放到hapj.ui.node对象中并返回。如果为一个hapj.ui.node对象，则直接返回该对象。
+        默认的规则
     </div>
     
 
@@ -62,109 +57,6 @@
     
     
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Argument</th>
-		
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>selector</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-                <td class="attributes">
-                
-                    
-                
-                    
-                
-                </td>
-            
-            
-            
-                <td class="default">
-                
-                </td>
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>ctx</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Doc</span>
-
-
-            
-            </td>
-            
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-                    
-                
-                    
-                
-                </td>
-            
-            
-            
-                <td class="default">
-                
-                    document
-                
-                </td>
-            
-            
-            <td class="description last">文档对象</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
     
     
     
@@ -190,7 +82,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1310">line 1310</a>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line63">line 63</a>
     </li></ul></dd>
     
     
@@ -225,128 +117,9 @@
     
     
     
-        <h3 class="subsection-title">Classes</h3>
-        
-        <dl>
-            <dt><a href="hapj.ui.fn.html">fn</a></dt>
-            <dd></dd>
-        </dl>
     
     
     
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl>
-            
-<dt>
-    <h4 class="name" id="_cls"><span class="type-signature">&lt;static> </span>_cls<span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        返回指定的类别的元素的DOM节点
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1482">line 1482</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="contains"><span class="type-signature">&lt;static> </span>contains<span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        a 是否包含 b
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1489">line 1489</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
     
     
     
@@ -355,7 +128,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="_id"><span class="type-signature">&lt;static> </span>_id<span class="signature">(id, ctx)</span><span class="type-signature"> &rarr; {HTMLElement}</span></h4>
+    <h4 class="name" id="chinese"><span class="type-signature">&lt;static> </span>chinese<span class="signature">(val, rule)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -363,7 +136,7 @@
     
     
     <div class="description">
-        返回指定的id的元素的DOM节点
+        验证是否中文
     </div>
     
 
@@ -397,7 +170,7 @@
 	
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>val</code></td>
             
             
             <td class="type">
@@ -413,149 +186,14 @@
             
             
             
-            <td class="description last">元素的id</td>
+            <td class="description last"></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>ctx</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Dom</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">document文档</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1437">line 1437</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">HTMLElement</span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="_node"><span class="type-signature">&lt;static> </span>_node<span class="signature">(name, attr)</span><span class="type-signature"> &rarr; {HTMLElement}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        创建一个指定名称的节点
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>rule</code></td>
             
             
             <td class="type">
@@ -571,14 +209,131 @@
             
             
             
-            <td class="description last">节点名称</td>
+            <td class="description last">{		min:最小长度		max:最大长度}</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line123">line 123</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="compare"><span class="type-signature">&lt;static> </span>compare<span class="signature">(val, rule)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        比较两个对象的值
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>attr</code></td>
+                <td class="name"><code>rule</code></td>
             
             
             <td class="type">
@@ -594,7 +349,7 @@
             
             
             
-            <td class="description last">节点属性</td>
+            <td class="description last"><dl>	<dt>to</dt> <dd>要比较对象的id</dd></dt></td>
         </tr>
 	
 	
@@ -625,7 +380,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1510">line 1510</a>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line272">line 272</a>
     </li></ul></dd>
     
     
@@ -646,24 +401,6 @@
     
     
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">HTMLElement</span>
-
-
-	</dd>
-</dl>
-
-        
     
     
 </dd>
@@ -671,7 +408,7 @@
         
             
 <dt>
-    <h4 class="name" id="_tag"><span class="type-signature">&lt;static> </span>_tag<span class="signature">(tag, ctx)</span><span class="type-signature"> &rarr; {HTMLElement}</span></h4>
+    <h4 class="name" id="date"><span class="type-signature">&lt;static> </span>date<span class="signature">(val, rule)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -679,7 +416,7 @@
     
     
     <div class="description">
-        返回指定的tag的元素的DOM节点
+        日期验证
     </div>
     
 
@@ -713,13 +450,13 @@
 	
         <tr>
             
-                <td class="name"><code>tag</code></td>
+                <td class="name"><code>val</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Object</span>
 
 
             
@@ -736,13 +473,13 @@
 	
         <tr>
             
-                <td class="name"><code>ctx</code></td>
+                <td class="name"><code>rule</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">Dom</span>
+<span class="param-type">Object</span>
 
 
             
@@ -752,7 +489,7 @@
             
             
             
-            <td class="description last"></td>
+            <td class="description last"><dl>	<dt>min</dt> <dd>最小日期。可以是多少s、或者具体的日期，如 6*3600*24，表示离现在至少6天，或者2012-02-24,表示选择的日期不能在这个日期之前</dd>	<dl>max</dl> <dd>最大日期。和min的格式一样</dd></dl></td>
         </tr>
 	
 	
@@ -783,7 +520,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1446">line 1446</a>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line418">line 418</a>
     </li></ul></dd>
     
     
@@ -804,24 +541,6 @@
     
     
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">HTMLElement</span>
-
-
-	</dd>
-</dl>
-
-        
     
     
 </dd>
@@ -829,7 +548,7 @@
         
             
 <dt>
-    <h4 class="name" id="cls"><span class="type-signature">&lt;static> </span>cls<span class="signature">(cls, ctx)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="email"><span class="type-signature">&lt;static> </span>email<span class="signature">(val)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -837,7 +556,7 @@
     
     
     <div class="description">
-        返回指定的类别的元素集合
+        验证是否为email地址
     </div>
     
 
@@ -871,157 +590,7 @@
 	
         <tr>
             
-                <td class="name"><code>cls</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>ctx</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Dom</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1417">line 1417</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    hapj.ui.node
-</div>
-
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="elem"><span class="type-signature">&lt;static> </span>elem<span class="signature">(elem)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        返回指定元素的集合
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>elem</code></td>
+                <td class="name"><code>val</code></td>
             
             
             <td class="type">
@@ -1068,7 +637,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1384">line 1384</a>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line105">line 105</a>
     </li></ul></dd>
     
     
@@ -1089,16 +658,6 @@
     
     
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    hapj.ui.node
-</div>
-
-
-
-        
     
     
 </dd>
@@ -1106,7 +665,7 @@
         
             
 <dt>
-    <h4 class="name" id="fire"><span class="type-signature">&lt;static> </span>fire<span class="signature">(elem, event)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ID"><span class="type-signature">&lt;static> </span>ID<span class="signature">(val, rule)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -1114,7 +673,7 @@
     
     
     <div class="description">
-        引发对象的指定事件
+        身份证验证
     </div>
     
 
@@ -1148,544 +707,7 @@
 	
         <tr>
             
-                <td class="name"><code>elem</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">HTMLElement</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">事件名称</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line2960">line 2960</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="id"><span class="type-signature">&lt;static> </span>id<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        返回指定的id元素的集合
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1403">line 1403</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    hapj.ui.node
-</div>
-
-
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="isDoc"><span class="type-signature">&lt;static> </span>isDoc<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        检查指定元素是否为document节点
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Mixed</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1376">line 1376</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Boolean</span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="isDom"><span class="type-signature">&lt;static> </span>isDom<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        检查指定元素是否为dom节点
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Mixed</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1368">line 1368</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Boolean</span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="load"><span class="type-signature">&lt;static> </span>load<span class="signature">(url, callback)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        载入url
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>url</code></td>
+                <td class="name"><code>val</code></td>
             
             
             <td class="type">
@@ -1708,13 +730,13 @@
 	
         <tr>
             
-                <td class="name"><code>callback</code></td>
+                <td class="name"><code>rule</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Object</span>
 
 
             
@@ -1724,7 +746,7 @@
             
             
             
-            <td class="description last"></td>
+            <td class="description last">规则，参数如下<dl>	<dt>minAge</dt> <dd>最小年龄</dd> <dt>maxAge</dt> <dd>最大年龄</dd>	<dt>sex<em>[male|female]</em>	<dd><em>male</em>男性</dd>	<dd><em>female</em>女性</dd> <dt>province</dt> <dd>省份名称，如北京、天津等</dd></dt></td>
         </tr>
 	
 	
@@ -1755,7 +777,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1528">line 1528</a>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line148">line 148</a>
     </li></ul></dd>
     
     
@@ -1783,7 +805,7 @@
         
             
 <dt>
-    <h4 class="name" id="on"><span class="type-signature">&lt;static> </span>on<span class="signature">(elem, event, handler)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="number"><span class="type-signature">&lt;static> </span>number<span class="signature">(val)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -1791,7 +813,7 @@
     
     
     <div class="description">
-        绑定事件
+        验证是否为数字
     </div>
     
 
@@ -1825,59 +847,13 @@
 	
         <tr>
             
-                <td class="name"><code>elem</code></td>
+                <td class="name"><code>val</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">HTMLElement</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>handler</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
+<span class="param-type">Object</span>
 
 
             
@@ -1918,7 +894,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line2813">line 2813</a>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line84">line 84</a>
     </li></ul></dd>
     
     
@@ -1946,7 +922,7 @@
         
             
 <dt>
-    <h4 class="name" id="tag"><span class="type-signature">&lt;static> </span>tag<span class="signature">(tag, ctx)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="phone"><span class="type-signature">&lt;static> </span>phone<span class="signature">(val, rule)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -1954,7 +930,7 @@
     
     
     <div class="description">
-        返回指定的tag元素的集合
+        手机号码规则验证
     </div>
     
 
@@ -1988,7 +964,7 @@
 	
         <tr>
             
-                <td class="name"><code>tag</code></td>
+                <td class="name"><code>val</code></td>
             
             
             <td class="type">
@@ -2011,13 +987,13 @@
 	
         <tr>
             
-                <td class="name"><code>ctx</code></td>
+                <td class="name"><code>rule</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">Dom</span>
+<span class="param-type">Object</span>
 
 
             
@@ -2027,7 +1003,7 @@
             
             
             
-            <td class="description last"></td>
+            <td class="description last">具有如下参数<dl> <dt>mobile</dt> <dd>手机类型，mobile 移动电话 home 座机 400电话 both 移动、座机、400都行，默认为mobile</dd></dl></td>
         </tr>
 	
 	
@@ -2058,7 +1034,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1427">line 1427</a>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line244">line 244</a>
     </li></ul></dd>
     
     
@@ -2079,16 +1055,6 @@
     
     
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    hapj.ui.node
-</div>
-
-
-
-        
     
     
 </dd>
@@ -2096,7 +1062,7 @@
         
             
 <dt>
-    <h4 class="name" id="un"><span class="type-signature">&lt;static> </span>un<span class="signature">(elem, event, handler)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="posint"><span class="type-signature">&lt;static> </span>posint<span class="signature">(val)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -2104,7 +1070,7 @@
     
     
     <div class="description">
-        取消绑定事件
+        验证是否为正整数
     </div>
     
 
@@ -2138,59 +1104,13 @@
 	
         <tr>
             
-                <td class="name"><code>elem</code></td>
+                <td class="name"><code>val</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">HtmlElement</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>handler</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
+<span class="param-type">Object</span>
 
 
             
@@ -2231,7 +1151,707 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line2929">line 2929</a>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line91">line 91</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="price"><span class="type-signature">&lt;static> </span>price<span class="signature">(val)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        验证是否为金钱,保留两位小数
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line98">line 98</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="range"><span class="type-signature">&lt;static> </span>range<span class="signature">(val, rule)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        范围比较
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><dl>	<dt>type:<em>[length|number]</em></dt> <dd>类型</dd> <dd><em>min</em>:最小值</dd> <dd><em>max</em>:最大值</dd> </dd></dl></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line313">line 313</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="regexp"><span class="type-signature">&lt;static> </span>regexp<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        验证是否符合正则表达式
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line111">line 111</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="remote"><span class="type-signature">&lt;static> </span>remote<span class="signature">(val, rule)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        远程校验
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><dl>	<dt>url</dt> <dd>远程校验的网址</dd>	<dl>type:<em>[POST|GET]</em></dl> <dd>方法，默认为POST</dd>	<dt>data</dt> <dd>提交给服务器端的数据，可以是key1=value1&key2=value2、{key1:value1}、function(){return {key1:value1}}等形式</dd>	<dt>dataType:<em>[text|json|html]</dt> <dd>数据返回的格式</dd> <dt>verify<em>Function</em></dt> <dd>函数，用来校验返回数据，如果返回true，说明校验成功，如果返回false，说明校验失败。如果没有这个函数，则返回的数据为true或者'true'时认为成功，其他都为失败</dd></dt></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line349">line 349</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="required"><span class="type-signature">&lt;static> </span>required<span class="signature">(val)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        验证是否为空
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="url"><span class="type-signature">&lt;static> </span>url<span class="signature">(val)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        验证是否为url链接
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line232">line 232</a>
     </li></ul></dd>
     
     
@@ -2278,7 +1898,7 @@
 <br clear="both">
 
 <footer>
-Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Sep 25 2014 20:22:52 GMT+0800 (CST)
+Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Sep 25 2014 20:22:53 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

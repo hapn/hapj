@@ -1,0 +1,36 @@
+*{font-size:14px;}
+/*日历*/
+.cal {width:336px;background:#FFF;z-index:10001;box-shadow:2px 2px 4px #999;border-radius:5px;*border:solid 1px #ccc;
+background:-webkit-linear-gradient(#FFF,#F0F0F0);
+background:-moz-linear-gradient(#FFF,#F0F0F0);
+background:-ms-linear-gradient(#FFF,#F0F0F0);
+background-image:-o-linear-gradient(#FFF,#F0F0F0);
+background-image:linear-gradient(#FFF,#F0F0F0)}
+.cal td{height:24px;line-height:24px;}
+.cal td a{display:block;border-radius:4px;}
+
+.cal .hd .g-1-8{text-align:center;}
+.cal .hd dl{position:absolute;z-index:9999;overflow:hidden;width:75px;background:#FFF;height:24px;}
+.cal .hd .ct {position:relative;}
+.cal .hd .slt{left:0;top:0;position:absolute;}
+.cal .hd .slt a{padding-left:20px;}
+
+.cal .hd .srt{right:0;top:0;position:absolute;}
+.cal .hd .srt a{padding-left:28px;}
+.cal .hd .slt a:hover,.cal .hd .srt a:hover{background:#369;color:#fff;}
+
+.cal .hd dl dd{height:24px;line-height:24px;border:solid 1px #FFF;border-top:0;}
+.cal .hd dl.on{height:100px;overflow:scroll;overflow-x:hidden;}
+.cal .hd dl.on dd{background:#EEE;}
+.cal .hd dl.on dd:hover{background:#333;color:#FFF;}
+
+.cal .bd td{text-align:center;}
+.cal .bd .cp a{color:#888;}
+.cal .bd .cn a{color:#888;}
+.cal .bd .cc a{color:#000;}
+.cal .bd .cw{background:#bbb;color:#333;cursor:default;font-weight:bold;}
+.cal .bd .cd .cday{background:#FF0;color:#000;}
+.cal .bd td.on a,.cal .bd td.on .cday{background:#369;color:#FFF;}
+.cal .bd td a:hover{background:#333;color:#FFF;}
+.cal .bd .co a{color:#999;}
+.cal .bd .co a:hover{background:none;color:#999;text-decoration: none;cursor: default;}

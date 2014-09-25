@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>JSDoc: Class: lazyload</title>
+<title>JSDoc: Class: calendar</title>
 
 <script src="scripts/prettify/prettify.js"> </script>
 <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-<h1 class="page-title">Class: lazyload</h1>
+<h1 class="page-title">Class: calendar</h1>
 
 
 
@@ -29,7 +29,7 @@
     <h2>
         <span class="ancestors"><a href="jQuery.html">jQuery</a><a href="jQuery.fn.html">.fn</a>.</span>
     
-    lazyload
+    calendar
     </h2>
     
 </header>  
@@ -41,7 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="lazyload"><span class="type-signature"></span>new jQuery.fn.lazyload<span class="signature">(options)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="calendar"><span class="type-signature"></span>new jQuery.fn.calendar<span class="signature">(options)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -49,7 +49,7 @@
     
     
     <div class="description">
-        使元素内的图片元素能延迟加载
+        这个组件主要用来显示日历
     </div>
     
 
@@ -99,7 +99,7 @@
             
             
             
-            <td class="description last">参数，具体如下：<dl> <dt>lazyTag</dt> <dd>延迟加载的标识属性，默认为hll</dd> <dt>onComplete:<em>Function</em></dt> <dd>当元素内所有图片加载完成时调用的方法</dd> <dt>minLoadOffset</dt> <dd>开始加载图片的最小时间间隔，单位：ms，默认为30</dd> <dt>minExecTime</dt> <dd>每次执行载入图片的最小间隔，单位：ms，默认为300</dd> <dt>docTopRange</dt> <dd>文档顶部距离，单位：px，默认为当前窗口高度的1/4</dd> <dt>docBottomRange</dt> <dd>文档顶部距离，单位：px，默认为当前浏览器窗口高度的3/4</dd> <dt>loadSrc</dt> <dd>等待时替换的图片</dd></dl></td>
+            <td class="description last">参数，包含如下参数：<dl> <dt>input</dt> <dd>日历绑定的input控件，指定此对象后日历对象会和input控件形成交互</dd> <dt>className</dt> <dd>日历控件的样式名称，默认为cal</dd> <dt>format</dt> <dd>日期格式，用Y、m、d分别代表年、月、日。默认为Y-m-d。</dd> <dt>startDate</dt> <dd>选择时间区间-开始日期[可选]，格式：Y-m-d。</dd> <dt>endDate</dt> <dd>选择时间区间-结束日期[可选]，格式：Y-m-d。</dd> <dt>onSelect:<em>function(y, m, d, h, i, s)</em></dt> <dd>当选择日期后调用的事件处理函数</dd> <dd><em>y</em> 年份</dd> <dd><em>m</em> 月份</dd> <dd><em>d</em> 日期</dd> <dd><em>h</em> 时钟</dd> <dd><em>i</em> 分钟</dd> <dd><em>s</em> 秒钟</dd></dl></td>
         </tr>
 	
 	
@@ -112,9 +112,6 @@
     
         
     
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>2.0</li></ul></dd>
-    
     
     
 
@@ -122,13 +119,6 @@
     
     
     
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>ronnie&lt;dengxiaolong@jiehun.com.cn></li>
-        </ul>
-    </dd>
     
     
     
@@ -140,7 +130,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.lazyload.js.html">ui/hapj.lazyload.js</a>, <a href="hapj.lazyload.js.html#line62">line 62</a>
+        <a href="hapj.calendar.js.html">ui/hapj.calendar.js</a>, <a href="hapj.calendar.js.html#line50">line 50</a>
     </li></ul></dd>
     
     
@@ -165,9 +155,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code> 
-详见<a href="../examples/lazyload.html" target="_blank">实例</a>
-$(document).lazyload({});</code></pre>
+    <pre class="prettyprint"><code>var cal = $('#calendar').calendar({	'format': 'Y/m/d'});详细例子请查看<a href="../examples/calendar.html" target="_blank">例子</a></code></pre>
 
     
 </dd>

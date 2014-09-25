@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>JSDoc: Namespace: string</title>
+<title>JSDoc: Class: fn</title>
 
 <script src="scripts/prettify/prettify.js"> </script>
 <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-<h1 class="page-title">Namespace: string</h1>
+<h1 class="page-title">Class: fn</h1>
 
 
 
@@ -27,9 +27,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="hapj.html">hapj</a>.</span>
+        <span class="ancestors"><a href="hapj.html">hapj</a><a href="hapj.ui.html">.ui</a>.</span>
     
-    string
+    fn
     </h2>
     
 </header>  
@@ -40,10 +40,26 @@
     
     
         
-            <div class="description">和字符串相关的函数</div>
-        
-        
-        
+<dt>
+    <h4 class="name" id="fn"><span class="type-signature"></span>new hapj.ui.fn<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        通过hapj.ui.id和hapj.ui.tag等方法，会返回一个这样的实例，用这个实例来进行相关的操作。hapj.ui.node对象支持push操作，有length对象，能像数组一样通过下标访问。hapj.ui.node的原型为hapj.ui.fn，所以hapj.ui.fn的所有属性都能通过hapj.ui.node的实例调用到。
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
 <dl class="details">
     
         
@@ -66,7 +82,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line448">line 448</a>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1566">line 1566</a>
     </li></ul></dd>
     
     
@@ -77,8 +93,20 @@
     
 </dl>
 
-        
-        
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
     
     </div>
     
@@ -100,7 +128,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="ltrim"><span class="type-signature">&lt;static> </span>ltrim<span class="signature">(str)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="childs"><span class="type-signature"></span>childs<span class="signature">(tag)</span><span class="type-signature"> &rarr; {<a href="hapj.ui.node.html">hapj.ui.node</a>}</span></h4>
     
     
 </dt>
@@ -108,7 +136,7 @@
     
     
     <div class="description">
-        返回去掉左侧空格的字符串
+        获取当前元素内所有的子元素
     </div>
     
 
@@ -142,7 +170,7 @@
 	
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name"><code>tag</code></td>
             
             
             <td class="type">
@@ -158,7 +186,7 @@
             
             
             
-            <td class="description last">字符串</td>
+            <td class="description last">子节点中的元素，如果指定，则返回子节点中的tagName为tag的元素</td>
         </tr>
 	
 	
@@ -189,7 +217,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line472">line 472</a>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1635">line 1635</a>
     </li></ul></dd>
     
     
@@ -210,6 +238,24 @@
     
     
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type"><a href="hapj.ui.node.html">hapj.ui.node</a></span>
+
+
+	</dd>
+</dl>
+
+        
     
     
 </dd>
@@ -217,7 +263,7 @@
         
             
 <dt>
-    <h4 class="name" id="rtrim"><span class="type-signature">&lt;static> </span>rtrim<span class="signature">(str)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="cls"><span class="type-signature"></span>cls<span class="signature">(cls)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -225,7 +271,7 @@
     
     
     <div class="description">
-        返回去掉右侧空格的字符串
+        返回某元素内指定类别的元素
     </div>
     
 
@@ -259,124 +305,7 @@
 	
         <tr>
             
-                <td class="name"><code>str</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">字符串</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line465">line 465</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="stripTags"><span class="type-signature">&lt;static> </span>stripTags<span class="signature">(str)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        去掉html标志
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>str</code></td>
+                <td class="name"><code>cls</code></td>
             
             
             <td class="type">
@@ -423,124 +352,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line502">line 502</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="toJson"><span class="type-signature">&lt;static> </span>toJson<span class="signature">(str)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        将字符串用json方式还原
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>str</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">字符串</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line487">line 487</a>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1623">line 1623</a>
     </li></ul></dd>
     
     
@@ -565,7 +377,7 @@
     
             
 <div class="param-desc">
-    mixed
+    hapj.ui.node
 </div>
 
 
@@ -578,7 +390,7 @@
         
             
 <dt>
-    <h4 class="name" id="toMd5"><span class="type-signature">&lt;static> </span>toMd5<span class="signature">(str)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="concat"><span class="type-signature"></span>concat<span class="signature">(node)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -586,7 +398,7 @@
     
     
     <div class="description">
-        将字符串用md5算法加密
+        将当前node对象的元素和另外一组节点组合
     </div>
     
 
@@ -620,13 +432,13 @@
 	
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name"><code>node</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Object</span>
 
 
             
@@ -636,7 +448,7 @@
             
             
             
-            <td class="description last">字符串</td>
+            <td class="description last"></td>
         </tr>
 	
 	
@@ -667,124 +479,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line479">line 479</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="toParam"><span class="type-signature">&lt;static> </span>toParam<span class="signature">(str)</span><span class="type-signature"> &rarr; {Object}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        将字符串转化对对象
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>str</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">字符串</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line495">line 495</a>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1591">line 1591</a>
     </li></ul></dd>
     
     
@@ -808,19 +503,11 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    hapj.ui.node
+</div>
 
 
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Object</span>
-
-
-	</dd>
-</dl>
 
         
     
@@ -830,7 +517,7 @@
         
             
 <dt>
-    <h4 class="name" id="trim"><span class="type-signature">&lt;static> </span>trim<span class="signature">(str)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="each"><span class="type-signature"></span>each<span class="signature">(func)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -838,7 +525,7 @@
     
     
     <div class="description">
-        返回去掉前后空格的字符串
+        循环每一个元素节点
     </div>
     
 
@@ -872,13 +559,13 @@
 	
         <tr>
             
-                <td class="name"><code>str</code></td>
+                <td class="name"><code>func</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Object</span>
 
 
             
@@ -888,7 +575,7 @@
             
             
             
-            <td class="description last">字符串</td>
+            <td class="description last"></td>
         </tr>
 	
 	
@@ -919,7 +606,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line458">line 458</a>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1602">line 1602</a>
     </li></ul></dd>
     
     
@@ -940,6 +627,611 @@
     
     
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    hapj.ui.node
+</div>
+
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="next"><span class="type-signature"></span>next<span class="signature">(tag)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        获取下一个节点
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">不指定则返回元素的下一个节点。否则依次往后找到标签名称为tag的元素。</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1654">line 1654</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="parent"><span class="type-signature"></span>parent<span class="signature">(tag)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        获取元素的父节点
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">不指定则返回元素的直接父节点。否则会网上回溯直到找到标签名称为tag的元素。</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1676">line 1676</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="prev"><span class="type-signature"></span>prev<span class="signature">(tag)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        获取上一个节点
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">不指定则返回元素的上一个节点。否则依次往前找到标签名称为tag的元素。</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1665">line 1665</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="push"><span class="type-signature"></span>push<span class="signature">(node)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        添加一个元素节点
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>node</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1582">line 1582</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="tag"><span class="type-signature"></span>tag<span class="signature">(tag)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        返回某元素内指定标签的元素
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line1611">line 1611</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    hapj.ui.node
+</div>
+
+
+
+        
     
     
 </dd>

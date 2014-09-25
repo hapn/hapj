@@ -4,15 +4,22 @@
  * @date 2014-09-22
  * @version 1.0
  * @class hapj
- * @description hapj全新的1.0版，该版本保留了向下兼容性，并将UI组件转变为基于jQuery实现。鼓励使用jQuery来实现基础功能<br/>
+ * @description hapj全新的2.0版，该版本保留了向下兼容性，并将UI组件转变为基于jQuery实现。鼓励使用jQuery来实现基础功能<br/>
+ * @example
  * hapj微内核，下面的闭包需要放置在页面开始处执行
- * <script>(function(d){var h=hapj=function(u){if(typeof u=='string'){var n=d.createElement('script'),s=d.getElementsByTagName('script')[0];n.async=n.defer=true;n.src=u;s.parentNode.insertBefore(n, s);}else{h.c.apply(null, arguments)}};h.a=[];h.c=function(){h.a.push(arguments)};})(document);</script>
+ * &lt;script&gt;(function(d){var h=hapj=function(u){if(typeof u=='string'){var n=d.createElement('script'),s=d.getElementsByTagName('script')[0];n.async=n.defer=true;n.src=u;s.parentNode.insertBefore(n, s);}else{h.c.apply(null, arguments)}};h.a=[];h.c=function(){h.a.push(arguments)};})(document);&lt;/script&gt;
  **/
 // 如果在页面上没有检测到hapj，则重新初始化
 if (!window.hapj) {
 	var hapj;
 	!function(d){
 		'use strict';
+		
+		/**
+		 * hapj本身是一个函数，可以给他传递一个函数闭包，其指针会指向模块总对象，通过add方法添加进去的模块都可以通过this调用到，而且该函数闭包会接入两个参数，分别为H和$，H表示hapj本
+		 * @constructor hapj
+		 * @param {Mixed|Function|Object} u js文件名或者一个函数或者对象包
+		 */
 		hapj = function(u){
 			if (typeof u == 'string') {
 				var n = d.createElement('script'), s = d.getElementsByTagName('script')[0];
@@ -36,7 +43,11 @@ if (!window.hapj) {
 !function(H){
 	'use strict';
 	
-	H.__version = 1.0;
+	/**
+	 * hapj的版本号
+	 * @member hapj.__version
+	 */
+	H.__version = 2.0;
 	
 	var _w = window,
 	_d = document,
@@ -111,7 +122,7 @@ if (!window.hapj) {
 		}
 	} : null)),
 	_callFunc = function(f) {
-		return _wrapFunc(f[0]).call(null, _h);
+		return _wrapFunc(f[0]).call(null, _h, window.jQuery);
 	},
 	_wrapFunc = function(closure){
 		if (typeof closure != 'object') return closure;
@@ -185,7 +196,7 @@ if (!window.hapj) {
 	
 	var hooks = {};
 	/**
-	 * @class hapj.hook
+	 * @namespac hapj.hook
 	 * @memberof hapj
 	 * @description 钩子
 	 */
@@ -435,9 +446,9 @@ hapj.ext = {};
 	
 	var ts = Object.prototype.toString;
 	/**
-	 * @class hapj.string
+	 * 和字符串相关的函数
+	 * @namespace hapj.string
 	 * @memberof hapj
-	 * 
 	 */
 	H.string = /**@lends hapj.string */{
 		/**
@@ -493,7 +504,8 @@ hapj.ext = {};
 	    }
 	};
 	/**
-	 * @class hapj.array
+	 * 和数组相关的函数
+	 * @namespace hapj.array
 	 * @memberof hapj
 	 * 
 	 */
@@ -533,8 +545,8 @@ hapj.ext = {};
 		}
 	};
 	/**
-	 * @class hapj.object
-	 * @memberof hapj
+	 * 和对象相关的函数
+	 * @namespace hapj.object
 	 * 
 	 */
 	H.object =  /**@lends hapj.object */{
@@ -597,7 +609,7 @@ hapj.ext = {};
 	
 	/**
 	 * JSON处理
-	 * @class hapj.json
+	 * @namespace hapj.json
 	 */
 	H.json = /**@lends hapj.json */{
 		/**
@@ -624,8 +636,8 @@ hapj.ext = {};
 	};
 	
 	/**
-	 * @class hapj.date
-	 * @memberof hapj
+	 * 和日期相关的函数
+	 * @namespace hapj.date
 	 */
 	H.date = /**@lends hapj.date*/{
 		/**
@@ -697,7 +709,7 @@ hapj.ext = {};
 	var ps = null,cs = null;
 	/**
 	 * 页面相关的内容
-	 * @class hapj.page
+	 * @namespace hapj.page
 	 */
 	H.page = /**@lends hapj.page */{
 		/**
@@ -771,8 +783,7 @@ hapj.ext = {};
 	var	prefix = 'HAPJ_';
 	/**
 	 * 本地缓存
-	 * @class hapj.cache
-	 * @memberof hapj
+	 * @namespace hapj.cache
 	 */
 	H.cache = /**@lends hapj.cache*/{
 		/**
@@ -865,8 +876,7 @@ hapj.ext = {};
 	var _hapjIdCount = 0, _hapjId = null;
 	/**
 	 * 获取或设置hapjId，注意，同一个页面只能设置一次，后面的设置不再起作用
-	 * @method
-	 * @memberof hapj
+	 * @method hapj.id
 	 * @param {String} id
 	 * @return {String} hapjId
 	 */
@@ -889,7 +899,7 @@ hapj.ext = {};
 	var _modules = {};
 	/**
 	 * 获取模块
-	 * @method
+	 * @method hapj.get
 	 * @param {String} moduleName
 	 */
 	H.get = function(moduleName){
@@ -949,8 +959,7 @@ hapj.ext = {};
 	"use strict";
 	/**
 	 * 浏览器属性
-	 * @class hapj.browser
-	 * @memberof hapj
+	 * @namespace hapj.browser
 	 * @example 
 	 * if (hapj.browser.mobile) {
 	 * 	window.location.href = 'http://m.xxx.com';
@@ -986,7 +995,7 @@ hapj.ext = {};
 
 /**
  * hapj 日志
- * @class hapj.log
+ * @namespace hapj.log
  * @author ronnie<dengxiaolong@jiehun.com.cn>
  * @version 1.0
  */
@@ -1134,7 +1143,7 @@ hapj.ext = {};
 	var option = {};
 	/**
 	 * 配置
-	 * @class hapj.conf
+	 * @namespace hapj.conf
 	 */
 	H.conf = /**@lends hapj.conf*/{
 		/**
@@ -1276,6 +1285,7 @@ hapj.ext = {};
 	
 	/**
 	 * 获取静态文件的host
+	 * @member hapj.staticHost
 	 */
 	H.staticHost = (function(){
 		var ss = _d.getElementsByTagName('script');
@@ -1293,12 +1303,12 @@ hapj.ext = {};
 	})();
 	
 	/**
-	 * @class jQuery
+	 * @namespace jQuery
 	 * 
 	 */
 	
 	/**
-	 * @class jQuery.fn
+	 * @namespace jQuery.fn
 	 */
 	
 	
@@ -1554,7 +1564,8 @@ hapj.ext = {};
 	});
 	
 	/**
-	 * @class hapj.ui.node
+	 * @class hapj.ui.fn
+	 * @alias hapj.ui.node
 	 * @description 通过hapj.ui.id和hapj.ui.tag等方法，会返回一个这样的实例，用这个实例来进行相关的操作。hapj.ui.node对象支持push操作，有length对象，能像数组一样通过下标访问。
 	 * hapj.ui.node的原型为hapj.ui.fn，所以hapj.ui.fn的所有属性都能通过hapj.ui.node的实例调用到。
 	 */
@@ -1563,7 +1574,7 @@ hapj.ext = {};
 	};
 	H.ui.fn = H.ui.node.prototype;
 	var ap = Array.prototype;
-	H.object.extend(H.ui.fn, /** @lends hapj.ui.node*/{
+	H.object.extend(H.ui.fn, /** @lends hapj.ui.fn.prototype*/{
 		/**
 		 * 添加一个元素节点
 		 * @param {Object} node
@@ -1575,6 +1586,7 @@ hapj.ext = {};
 		/**
 		 * 将当前node对象的元素和另外一组节点组合
 		 * @param {Object} node
+		 * @return hapj.ui.node
 		 */
 		concat: function(elems) {
 			_A.each(elems, function(i,s){
@@ -1585,6 +1597,7 @@ hapj.ext = {};
 		/**
 		 * 循环每一个元素节点
 		 * @param {Object} func
+		 * @return hapj.ui.node
 		 */
 		each: function(func) {
 			_A.each(this, func);
@@ -2207,41 +2220,7 @@ hapj.ext = {};
 	});
 }(hapj, window, document);
 
-/** 
- * Ajax请求
- * @class hapj.ajax 
- * @description 利用XmlHttpRequest发出请求，并进行相应处理的组件。接口实现和jQuery的很类似，但是代码更轻巧，且内置对ajax请求串行化的支持。
- * @example 
- * 示例
-// 队列方法1
-for(var i = 0; i < 1000; i++) {
-	hapj.ajax({
-		url:'/foo.php?i=' + i,
-		method:'post',
-		queue:true,
-		success:function(ret) {
-			alert(ret);
-		}
-	});
-}
-// 开始处理队列请求
-hapj.ajax.endQueue();
-
-// 队列方法2
-hapj.ajax.startQueue();
-for(var i = 0; i < 1000; i++) {
-	hapj.ajax({
-		url:'/foo.php?i=' + i,
-		method:'post',
-		success:function(ret) {
-			alert(ret);
-		}
-	});
-}
-// 开始处理队列请求
-hapj.ajax.endQueue();
-
- **/
+// Ajax请求
 (function(H){
 	'use strict';
 	
@@ -2280,7 +2259,9 @@ hapj.ajax.endQueue();
 	;
 	
 	/**
-	 * @constructor hapj.ajax
+	 * Ajax请求
+	 * 利用XmlHttpRequest发出请求，并进行相应处理的组件。接口实现和jQuery的很类似，但是代码更轻巧，且内置对ajax请求串行化的支持。
+	 * @class hapj.ajax
 	 * @param {Object} options 配置参数，包括如下参数<br/>
 	 * <dl>
 	 * 	<dt>url</dt>
@@ -2315,6 +2296,11 @@ hapj.ajax.endQueue();
 	 * 	<dt>stop</dt>
 	 *  <dd>中断请求</dd>
 	 * </dl>
+	 * @example 
+	 * hapj.ajax({
+	 * 	url:'xxx.php',
+	 *  dataType:'json'
+	 * });
 	 */
 	H.ajax = function(options){
 		var hs = H.extend({}, headers), cfg = H.extend({}, defaults);
@@ -2476,6 +2462,35 @@ hapj.ajax.endQueue();
 	H.object.extend(H.ajax, /**@lends hapj.ajax */{
 		/**
 		 * 开始将ajax请求加入到队列。
+		 * @example 
+示例
+// 队列方法1
+for(var i = 0; i < 1000; i++) {
+	hapj.ajax({
+		url:'/foo.php?i=' + i,
+		method:'post',
+		queue:true,
+		success:function(ret) {
+			alert(ret);
+		}
+	});
+}
+// 开始处理队列请求
+hapj.ajax.endQueue();
+
+// 队列方法2
+hapj.ajax.startQueue();
+for(var i = 0; i < 1000; i++) {
+	hapj.ajax({
+		url:'/foo.php?i=' + i,
+		method:'post',
+		success:function(ret) {
+			alert(ret);
+		}
+	});
+}
+// 开始处理队列请求
+hapj.ajax.endQueue();
 		 */
 		startQueue: function() {
 			doQueue = true;
