@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>JSDoc: Namespace: browser</title>
+<title>JSDoc: Class: sortable</title>
 
 <script src="scripts/prettify/prettify.js"> </script>
 <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-<h1 class="page-title">Namespace: browser</h1>
+<h1 class="page-title">Class: sortable</h1>
 
 
 
@@ -27,9 +27,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="hapj.html">hapj</a>.</span>
+        <span class="ancestors"><a href="jQuery.html">jQuery</a><a href="jQuery.fn.html">.fn</a>.</span>
     
-    browser
+    sortable
     </h2>
     
 </header>  
@@ -40,13 +40,80 @@
     
     
         
-            <div class="description">浏览器属性</div>
+<dt>
+    <h4 class="name" id="sortable"><span class="type-signature"></span>new jQuery.fn.sortable<span class="signature">(options)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        使表格或者ul支持拖拽。注意，如果数据较少，在一页就能显示完毕，可以使用这个拖拽排序来执行相关的动作。如果数据较多，则最好使用其他方法对数据进行排序。
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
         
-        
-        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">参数，具体参考：<a href="jQuery.fn.sortable.options.html">jQuery.fn.sortable.options</a></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
 <dl class="details">
     
         
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>2.0</li></ul></dd>
     
     
     
@@ -55,6 +122,13 @@
     
     
     
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>dengxiaolong@jiehun.com.cn</li>
+        </ul>
+    </dd>
     
     
     
@@ -66,7 +140,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line960">line 960</a>
+        <a href="hapj.sortable.js.html">ui/hapj.sortable.js</a>, <a href="hapj.sortable.js.html#line52">line 52</a>
     </li></ul></dd>
     
     
@@ -77,13 +151,41 @@
     
 </dl>
 
-        
-        
-            <h3>Example</h3>
-            
-    <pre class="prettyprint"><code> if (hapj.browser.mobile) {	window.location.href = 'http://m.xxx.com';}</code></pre>
+    
+    
 
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
         
+    <pre class="prettyprint"><code> 
+详见<a href="../examples/sortable.html" target="_blank">具体例子</a>
+<code>
+<div>dd</div>
+$('ul').sortable({
+	dragClass:'drag', 			
+	noDragClass:'nodrag', 		
+	onDrop:function(root, dragger, target) { 
+		var arr = [];
+		$.each(root.getElementsByTagName('tr'), function(k, v) {
+			arr.push(v.getAttribute('id'));
+		});
+		alert(id.join(','));
+ 	},
+ 	relate: $('#ulList') // 关联拖动的对象
+});
+</code></code></pre>
+
+    
+</dd>
+
     
     </div>
     
@@ -94,175 +196,16 @@
     
     
     
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
+        <h3 class="subsection-title">Classes</h3>
         
         <dl>
-            
-<dt>
-    <h4 class="name" id="mobile"><span class="type-signature">&lt;static> </span>mobile<span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        是否为移动浏览器
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line991">line 991</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="type"><span class="type-signature">&lt;static> </span>type<span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        浏览器类别
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line983">line 983</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="version"><span class="type-signature">&lt;static> </span>version<span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        浏览器版本号
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.js.html">hapj.js</a>, <a href="hapj.js.html#line987">line 987</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
+            <dt><a href="jQuery.fn.sortable.options.html">options</a></dt>
+            <dd></dd>
         </dl>
+    
+    
+    
+    
     
     
     
@@ -286,7 +229,7 @@
 <br clear="both">
 
 <footer>
-Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Sep 26 2014 11:30:12 GMT+0800 (CST)
+Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Sep 26 2014 11:30:13 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

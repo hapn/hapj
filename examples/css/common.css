@@ -34,3 +34,6 @@ background-image:linear-gradient(#FFF,#F0F0F0)}
 .cal .bd td a:hover{background:#333;color:#FFF;}
 .cal .bd .co a{color:#999;}
 .cal .bd .co a:hover{background:none;color:#999;text-decoration: none;cursor: default;}
+
+/*排序*/
+.sort_drag {background:#F0F0F0;}

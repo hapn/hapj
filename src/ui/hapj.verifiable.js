@@ -62,12 +62,12 @@ _str2date = function(str) {
 _addRules = function(){
 	/**
 	 * 默认的规则
-	 * @class jQuery.verifiable.rules
+	 * @class jQuery.fn.verifiable.rules
 	 * @private
 	 */
 	$.verifiable.addRules(
 	/**
-	 * @lends jQuery.verifiable.rules
+	 * @lends jQuery.fn.verifiable.rules
 	 */
 	{
 		/**

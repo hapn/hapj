@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<title>sortable</title>
+		<meta charset="utf-8"/>
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../src/ui/hapj.sortable.js"></script>
+		
+		<style>
+			tr, li,#divSort div{height:30px;}
+			.sort_drag{border:dotted 1px #F00;background:#FCC}
+			.no_drag{background:#CCC;cursor:not-allowed;}
+		</style>
+	</head>
+	<body>
+				<h2>table的排序</h2>
+				<table id="tbSort" >
+					<thead>
+						<tr>
+							<th width="80">ID</th>
+							<th>标题</th>
+							<th width="200">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>234</td>
+							<td>新版奖品规则上线，我们吃霸王餐更容易了！第十九期霸王餐活动正式启动</td>
+							<td>删除</td>
+						</tr>
+						<tr>
+							<td>235</td>
+							<td>【9月9日.本周话题】我为婚博会做的功课</td>
+							<td>删除</td>
+						</tr>
+						<tr>
+							<td>236</td>
+							<td>新朋友们看过来，我们为啥要加入中国婚博会你造吗？</td>
+							<td>删除</td>
+						</tr>
+						<tr>
+							<td>237</td>
+							<td>亲爱的们，为了霸王餐努力哈</td>
+							<td>删除</td>
+						</tr>
+						<tr>
+							<td>238</td>
+							<td>【麻依原创】大诚钻石绝对是女人喜欢的真爷们</td>
+							<td>删除</td>
+						</tr>
+						<tr>
+							<td>239</td>
+							<td>【19.8】不是冷门不精彩，男人不爱戴戒指怎么破？</td>
+							<td>删除</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<script>$('#tbSort').sortable();</script>
+				
+				<h2>ul的排序</h2>
+				<ul id="ulSort">
+					<li>新版奖品规则上线，我们吃霸王餐更容易了！第十九期霸王餐活动正式启动</li>
+					<li>【9月9日.本周话题】我为婚博会做的功课</li>
+					<li class="no_drag">新朋友们看过来，我们为啥要加入中国婚博会你造吗？</li>
+					<li>亲爱的们，为了霸王餐努力哈</li>
+					<li>【麻依原创】大诚钻石绝对是女人喜欢的真爷们</li>
+					<li>【19.8】不是冷门不精彩，男人不爱戴戒指怎么破？</li>
+				</ul>
+				<div id="dragger"></div>
+				<div id="replacer"></div>
+				<script>
+				var dragger = $('#dragger');
+				var replacer = $('#replacer');	
+				$('#ulSort').sortable({
+					noDragClass:'no_drag',
+					onDrop:function(tb, a, b){
+						dragger.html('拖动者:' + a.innerHTML);
+						replacer.html('被替换者:' + b.innerHTML);
+					}
+				});</script>
+				
+				
+				<h2>div的排序</h2>
+				<div id="divSort">
+					<div>新版奖品规则上线，我们吃霸王餐更容易了！第十九期霸王餐活动正式启动</div>
+					<div>【9月9日.本周话题】我为婚博会做的功课</div>
+					<div>新朋友们看过来，我们为啥要加入中国婚博会你造吗？</div>
+					<div>亲爱的们，为了霸王餐努力哈</div>
+					<div>【麻依原创】大诚钻石绝对是女人喜欢的真爷们</div>
+					<div>【19.8】不是冷门不精彩，男人不爱戴戒指怎么破？</div>
+				</div>
+				
+				<script>
+					$('#divSort').sortable();
+				</script>
+	</body>
+</html>

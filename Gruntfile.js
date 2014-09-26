@@ -25,7 +25,8 @@ module.exports = function(grunt) {
 			      'src/ui/hapj.lazyload.js',
 			      'src/ui/hapj.suggestable.js',
 			      'src/ui/hapj.verifiable.js',
-			      'src/ui/hapj.calendar.js'
+			      'src/ui/hapj.calendar.js',
+			      'src/ui/hapj.sortable.js'
 				],
 				dest: 'dist/<%= pkg.name %>.js'
 			}
