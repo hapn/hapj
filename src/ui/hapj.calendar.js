@@ -3,6 +3,7 @@
  * @author dengxiaolong@jiehun.com.cn
  * @date 2014-09-25
  * @version 2.0 
+ * @namespace jQuery.fn.calendar
  * @description 日历控件 
  */
 
@@ -39,7 +40,20 @@
 		return format.replace(/(([YmdHis]))/g, function(m, i, k){
 			return dates[k];
 		});
-	}, defaults = {
+	}, 
+	/**
+	 * @memberof jQuery.fn.calendar
+	 * @typedef options
+	 * @private
+	 * @property {jQuery} [input] 日历绑定的input控件，指定此对象后日历对象会和input控件形成交互
+	 * @property {string} [className=cal] 日历控件的样式名称
+	 * @peoperty {string} [format=Y-m-d] 日期格式，用Y、m、d、H、i、s分别代表年、月、日、时、分、秒。
+	 * @property {String} [startDate] 选择时间区间-开始日期 格式：Y-m-d
+	 * @property {String} [endDate] 选择时间区间-结束日期 格式：Y-m-d
+	 * @property {jQuery.fn.calendar~onSelect} onSelect 当选择日期后调用的回调函数
+	 * 
+	 */
+	defaults = {
 		input:null,
 		className:'cal',
 		format:'Y-m-d',
@@ -47,29 +61,24 @@
 		startDate:null,
 		endDate:null
 	};
+	
 	/**
-	 * @class jQuery.fn.calendar
-	 * @param {Object} options 参数，包含如下参数：
-	 * <dl>
-	 *  <dt>input</dt>
-	 *  <dd>日历绑定的input控件，指定此对象后日历对象会和input控件形成交互</dd>
-	 *  <dt>className</dt>
-	 *  <dd>日历控件的样式名称，默认为cal</dd>
-	 *  <dt>format</dt>
-	 *  <dd>日期格式，用Y、m、d、H、i、s分别代表年、月、日、时、分、秒。默认为Y-m-d。</dd>
-	 *  <dt>startDate</dt>
-	 *  <dd>选择时间区间-开始日期[可选]，格式：Y-m-d。</dd>
-	 *  <dt>endDate</dt>
-	 *  <dd>选择时间区间-结束日期[可选]，格式：Y-m-d。</dd>
-	 *  <dt>onSelect:<em>function(y, m, d, h, i, s)</em></dt>
-	 *  <dd>当选择日期后调用的事件处理函数</dd>
-	 *  <dd><em>y</em> 年份</dd>
-	 *  <dd><em>m</em> 月份</dd>
-	 *  <dd><em>d</em> 日期</dd>
-	 *  <dd><em>h</em> 时钟</dd>
-	 *  <dd><em>i</em> 分钟</dd>
-	 *  <dd><em>s</em> 秒钟</dd>
-	 * </dl>
+	 * @memberof jQuery.fn.calendar
+	 * @callback ~onSelect
+	 * @private
+	 * @param {number} y 年份
+	 * @param {number} m 月份
+	 * @param {number} d 日期
+	 * @param {number} h 时钟
+	 * @param {number} i 分钟
+	 * @param {number} s 秒钟
+	 */
+	
+	/**
+	 * 日历控件的初始化函数
+	 * @memberof jQuery.fn.calendar
+	 * @function ~new
+	 * @param {jQuery.fn.calendar.options} options 参数，包含如下参数：
 	 * @description 这个组件主要用来显示日历
 	 * @example
 	 * var cal = $('#calendar').calendar({

@@ -1303,12 +1303,10 @@ hapj.ext = {};
 	})();
 	
 	/**
-	 * @namespace jQuery
-	 * 
+	 * @class jQuery
 	 */
-	
 	/**
-	 * @namespace jQuery.fn
+	 * @class jQuery.fn
 	 */
 	
 	

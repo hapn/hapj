@@ -1,259 +1,0 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>JSDoc: Class: verifiable</title>
-
-<script src="scripts/prettify/prettify.js"> </script>
-<script src="scripts/prettify/lang-css.js"> </script>
-<!--[if lt IE 9]>
-<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-<link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-<h1 class="page-title">Class: verifiable</h1>
-
-
-
-
-
-<section>
-    
-<header>
-    <h2>
-        <span class="ancestors"><a href="jQuery.html">jQuery</a><a href="jQuery.fn.html">.fn</a>.</span>
-    
-    verifiable
-    </h2>
-    
-</header>  
-
-<article>
-    <div class="container-overview">
-    
-    
-    
-        
-<dt>
-    <h4 class="name" id="verifiable"><span class="type-signature"></span>new jQuery.fn.verifiable<span class="signature">(相关参数，具体如下：)</span><span class="type-signature"> &rarr; {Object}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        使表单元素可验证。
-原理
-	所有的验证规则都是作为元素的属性来配置的，键为verify-rule，值为Object类型。验证遵循如下几条规则：
-	1、单个元素可以设置多条验证规则，验证有先后顺序，只有之前的一条规则通过后，才会进行后面规则的验证。
-	2、元素的验证规则是通过绑定事件到元素上来实现验证的，默认会使用blur事件。
-	3、hint是一条特殊的验证规则，绑定到元素的hint事件，验证一直会返回true。hint可传入id指定用来提示的元素。
-	4、remote是一条特殊的验证规则，需要有jQuery的支持。
-	5、表单提交时会验证所有非异步的验证规则，对于异步验证，如果之前有缓存验证结果，直接使用，否则返回true。
-	6、可以添加自定义验证规则。
-使用
-	1、	在表单需要验证的元素里边加入属性verify-rule，值为相关的验证规则。
-	2、	对表单元素调用verifiable函数，并传入事件处理函数。
-	3、	验证规则有不满足需求时，可以通过hapj.ui.verifiable.addRule方法增加验证规则。
-	4、	执行后会返回一个对象，该对象包含一个函数，redo，用来当表单添加了动态内容后需要将其加入验证。
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>相关参数，具体如下：</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last"><dl>	<dt>hint<em>function(type, rule, hinter)</em></dt> <dd>显示提示信息的事件</dd>	<dt>success<em>function(type, rule, hinter)</em></dt> <dd>验证成功的事件</dd>	<dt>hint<em>function(type, rule, hinter)</em></dt> <dd>显示提示信息的事件</dd>	<dt>failure<em>function(type, rule, hinter)</em></dt> <dd>验证失败的事件</dd> <dd> 以上三个函数的参数都一样，具体含义如下：<br/> <em>type</em> 验证规则类型<br/> 	<em>rule</em> 验证规则<br/> 	<em>hinter</em> 提示元素，是一个hapj.ui.node节点</br> </dd>	<dt>submit<em>function(e)</em></dt> <dd>表单验证成功后的提交事件，如果返回值为false，表单不会提交</dd>	<dt>afterSubmit<em>function()</em></dt> <dd>表单处理完毕之后的事件处理函数</dd></dl></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hapj.verifiable.js.html">ui/hapj.verifiable.js</a>, <a href="hapj.verifiable.js.html#line595">line 595</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <dl>	<dt>redo:<em>function()</em></dt> <dd>用来将表单动态的动态内容也加入验证。举例如下：</dd>	<dt>error:<em>function(name, msg)</em></dt> <dd>用来提示指定的错误信息。<br/> 	<em>name</em> 表单元素的name<br/>     <em>msg</em> 提示的信息<br/> </dd></dl>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">Object</span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code> ## html code
-&lt;form id="formAdd" method="post"&gt;
-	&lt;input type="text" name="data[username]" verify-rule="{
-		required:{
-			msg:'username is required.'
-		},
-		remote: {
-			url: '/user/username-is-exist',
-			data:'username={$value}',
-			msg:'username is existed.',
-	}"/&gt;
-	&lt;input type="email" name="data[email]" verify-rule="{
-		email:{
-			msg:'email format is wrong.'
-		}
-	}"/&gt;
-&lt;/form&gt;## js code
-hapj(function(H){
-	$('#formAdd').verifiable();
- });</code></pre>
-
-    
-</dd>
-
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</article>
-
-</section>  
-
-
-
-
-</div>
-
-<nav>
-<h2><a href="index.html">Index</a></h2><h3>Namespaces</h3><ul><li><a href="hapj.array.html">hapj.array</a></li><li><a href="hapj.browser.html">hapj.browser</a></li><li><a href="hapj.cache.html">hapj.cache</a></li><li><a href="hapj.conf.html">hapj.conf</a></li><li><a href="hapj.date.html">hapj.date</a></li><li><a href="hapj.json.html">hapj.json</a></li><li><a href="hapj.log.html">hapj.log</a></li><li><a href="hapj.object.html">hapj.object</a></li><li><a href="hapj.page.html">hapj.page</a></li><li><a href="hapj.string.html">hapj.string</a></li><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.ajaxable.html">jQuery.ajaxable</a></li><li><a href="jQuery.fn.html">jQuery.fn</a></li><li><a href="jQuery.verifiable.html">jQuery.verifiable</a></li></ul><h3>Classes</h3><ul><li><a href="hapj.html">hapj</a></li><li><a href="hapj.ajax.html">hapj.ajax</a></li><li><a href="hapj.ui.html">hapj.ui</a></li><li><a href="hapj.ui.fn.html">hapj.ui.fn</a></li><li><a href="jQuery.fn.ajaxable.html">jQuery.fn.ajaxable</a></li><li><a href="jQuery.fn.calendar.html">jQuery.fn.calendar</a></li><li><a href="jQuery.fn.floatable.html">jQuery.fn.floatable</a></li><li><a href="jQuery.fn.lazyload.html">jQuery.fn.lazyload</a></li><li><a href="jQuery.fn.menuable.html">jQuery.fn.menuable</a></li><li><a href="jQuery.fn.selectable.html">jQuery.fn.selectable</a></li><li><a href="jQuery.fn.sortable.html">jQuery.fn.sortable</a></li><li><a href="jQuery.fn.sortable.options.html">jQuery.fn.sortable.options</a></li><li><a href="jQuery.fn.suggestable.html">jQuery.fn.suggestable</a></li><li><a href="jQuery.fn.switchable.html">jQuery.fn.switchable</a></li><li><a href="jQuery.fn.verifiable.html">jQuery.fn.verifiable</a></li><li><a href="jQuery.verifiable.rules.html">jQuery.verifiable.rules</a></li></ul>
-</nav>
-
-<br clear="both">
-
-<footer>
-Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Sep 26 2014 11:30:14 GMT+0800 (CST)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>

@@ -4,8 +4,9 @@
  * @date 2012-02-16
  * @version 1.0 
  * @description 用来实现各种元素的异步化请求
+ * @namespace jQuery.fn.ajaxable
  **/
-!function($, H){
+!function($){
 	"use strict";
 	
 var _d = decodeURIComponent;
@@ -55,7 +56,7 @@ var submitHandler = function(form, options) {
 		}
 	}
 	var action = options.action || form.action || document.URL,
-	data = $(form).param();
+	data = $.param($(form));
 	
 	if (options.pack) {
 		options.pack.call(null, data);
@@ -118,34 +119,66 @@ ajaxPost = function(elem, options) {
 	}
 };
 
-/**
- * @namespace jQuery.ajaxable
- * @description 实现元素的异步化请求
- */
-$.ajaxable = /** @lends jQuery.ajaxable*/{
-		/**
-		 * 表单的异步请求也非常多，在我们的体系下，所有的请求都是基于ajax请求发出的。这里我们有一些假设的前提：
-		<ol>
-		<li>数据都是以json格式返回来。</li>
-		<li>数据返回的是一个对象。有err和data两个键。</li>
-		<li>如果err为空或者err中包含ok字符串，认为这个表单提交动作是成功的，否则为失败。</li>
-		</ol>
-		 * @param {HtmlElement} table
-		 * @param {Object} options 默认可以不传入任何值。具有如下参数：
-		 * <h4>函数</h4>
-		 * <dl>
-		 *  <dt>pack:<em>function(options)</em></dt>
-		 *  <dd>提交数据前对表单的数据进行整理和封装。默认已经对type=password的表单项进行了md5加密，没有特殊要求都可以不适用此函数。</dd>
-		 *  <dt>ok:<em>function(data)</em></dt>
-		 *  <dd>表单提交成功时调用的函数。</dd>
-		 *  <dt>error:<em>function(code, desc)</em></dt>
-		 *  <dd>表单提交失败是调用的函数。</dd>
-		 *  <dt>confirm:<em>string | function</em></dt>
-		 *  <dd>确认字符串。如果是字符串，会弹出提示框让用户确认，用户确认后才会继续后面的操作。如果是函数，返回为false时，就不会继续后面的操作。</dd>
-		 *  <dt>beforeSubmit:<em>Function</em></dt>
-		 *  <dd>在提交之前进行的处理</dd>
-		 * </dl>
-		 * @example 
+var ajaxable = /**
+	@lends jQuery.fn.ajaxable 
+	@private
+*/{
+	/**
+	 * 确认的回调函数
+	 * @memberof jQuery.fn.ajaxable
+	 * @private
+	 * @callback ~okCallback
+	 * @param {Object} data JSON数据
+	 */
+	
+	/**
+	 * 错误的回调函数
+	 * @memberof jQuery.fn.ajaxable
+	 * @private
+	 * @callback ~errorCallback
+	 * @param {String} code 错误状态
+	 * @param {String} desc 错误详细描述
+	 */
+	
+	/**
+	 * 封装数据的回调函数
+	 * @memberof jQuery.fn.ajaxable
+	 * @private
+	 * @callback ~packCallback
+	 * @param {{string:string}} options 表单元素构建的键值对
+	 */
+	
+	/**
+	 * 提交前的回调函数
+	 * @memberof jQuery.fn.ajaxable
+	 * @private
+	 * @callback ~submitCallback
+	 * @param {Event} e
+	 * @param {jQuery.fn.ajaxable.formOptions} options 配置参数
+	 */
+	
+	/**
+	 * ajaxable初始化表单的选项
+	 * @memberof jQuery.fn.ajaxable
+	 * @private
+	 * @typedef .formOptions
+	 * @property {jQuery.fn.ajaxable~okCallback} ok 表单提交成功时调用的函数。
+	 * @property {jQuery.fn.ajaxable~errorCallback} error 表单提交失败是调用的函数。
+	 * @property {jQuery.fn.ajaxable~packCallback} pack 提交数据前对表单的数据进行整理和封装。
+	 * @property {(string|function)} confirm 确认字符串。
+	 * @property {jQuery.fn.ajaxable~submitCallback} beforeSubmit 在提交之前进行的处理
+	 */
+		
+	/**
+	 * 表单的异步请求也非常多，在我们的体系下，所有的请求都是基于ajax请求发出的。这里我们有一些假设的前提：
+	<ol>
+	<li>数据都是以json格式返回来。</li>
+	<li>数据返回的是一个对象。有err和data两个键。</li>
+	<li>如果err为空或者err中包含ok字符串，认为这个表单提交动作是成功的，否则为失败。</li>
+	</ol>
+	 * @private
+	 * @param {jQuery.fn.ajaxable.formOptions} options 默认可以不传入任何值。具有如下参数：
+	 * @example 
 &lt;form method="post" action="/static/test/cities.html" id="formAdd"&gt;
 	&lt;input type="hidden" name="username" value="hello"/&gt;
 	&lt;input type="password" name="pwd" value="pass"/&gt;
@@ -158,7 +191,7 @@ $('#formAdd').ajaxable({
 	}
 });
 &lt;/script&gt;
-		 */
+	*/
 	ajaxForm: function(form, options) {
 		options = options || {};
 		if (!options._submited_) {
@@ -174,23 +207,26 @@ $('#formAdd').ajaxable({
 			submitHandler(form, options);
 		}
 	},
+	
+	/**
+	 * 图片ajaxable初始化参数
+	 * @memberof jQuery.fn.ajaxable
+	 * @private
+	 * @typedef imageOptions
+	 * @property {boolean} [cache=false] 是否缓存
+	 * @property {string} [timeKey=t] 用来表示时间的key
+	 */
+	
 	/**
 	 * 实现图片的异步化加载
-	 * @param {HtmlElement} img
-	 * @param {Object} options 选项
-	 * <dl>
-	 *  <dt>cache</dt>
-	 *  <dd>是否缓存，默认为false</dd>
-	 *  <dt>timeKey</dt>
-	 *  <dd>用来表示时间的key，默认为t</dd>
-	 * </dl>
+	 * @private
+	 * @param {jQuery.fn.ajaxable.imageOptions} options 选项
 	 * @example 这部分最典型的应用场景就是解决图片验证码的更新问题。
 &lt;img id="vCode" src="/util/vcode.jpg"/&gt;&lt;a href="" id="refreshVCode"&gt;Refresh&lt;a&gt;
 &lt;script&gt;
 var vCode = $('#vCode');
 $('#refreshVCode').click(function() {
 	vCode.ajaxable();
-	// or jQuery.ajaxable.ajaxImg($('#vCode'));
 });
 &lt;/script&gt;
 	 */
@@ -222,26 +258,26 @@ $('#refreshVCode').click(function() {
 		}
 	},
 	/**
+	 * 下拉框ajaxable初始化参数
+	 * @memberof jQuery.fn.ajaxable
+	 * @typedef selectOptions
+	 * @private
+	 * @property {string} [url] 切换下拉框选项后，需要访问的url。<br/>
+	 * 可以传入一个变量{value}，异步请求时会将其替换为下拉框当前选中的值。另外，也可以直接给下拉框顶一个属性ajax-url来定义异步请求的url。
+	 * @property {string} [dataType=json] 返回返回数据的格式，默认为json
+	 * @property {HTMLElement} [target] 返回数据后用来处理数据的对象，默认会使用当前对象的下一个DOM节点。
+	 * @property {jQuery.fn.ajaxable~packCallback} [pack] 对返回数据进行处理的函数。
+	 * @property {jQuery.fn.ajaxable~successCallback} [success] 将返回数据进行处理的函数。默认已经有一个处理函数，其逻辑如下：<br/>
+	 * 如果返回数据被处理成[{name:'name1', value:'value1']}的形式，并且dataType为json格式，target也是一个下拉框，那么会将数据自动加载到target作为选项；<br/>
+	 * 如果dataType为html，会自动将target的innerHTML设置为返回的数据。
+	 * @property {jQuery.fn.ajaxable~okCallback} [ok] 表单提交成功时调用的函数。
+	 * @property {jQuery.fn.ajaxable~errorCallback} [error] 表单提交失败是调用的函数。
+	 */
+	
+	/**
 	 * ajax化一个select控件
-	 * @param {HtmlElement} select
-	 * @param {Object} options 默认可以不传入任何值。具有如下参数：
-	 * <dl>
-	 *  <dt>url</dt>
-	 *  <dd>切换下拉框选项后，需要访问的url。可以传入一个变量{value}，异步请求时会将其替换为下拉框当前选中的值。另外，也可以直接给下拉框顶一个属性ajax-url来定义异步请求的url。</dd>
-	 *  <dt>dataType</dt>
-	 *  <dd>返回数据的格式，默认为json</dd>
-	 *  <dt>target</dt>
-	 *  <dd>返回数据后用来处理数据的对象，默认会使用当前对象的下一个DOM节点。</dd>
-	 *  <dt>pack</dt>
-	 *  <dd>对返回数据进行处理的函数。</dd>
-	 *  <dt>success</dt>
-	 *  <dd>将返回数据进行处理的函数。默认已经有一个处理函数，其逻辑如下：<br/>
-如果返回数据被处理成[{name:’name1’, value:’value1’]}的形式，并且dataType为json格式，target也是一个下拉框，那么会将数据自动加载到target作为选项；如果dataType为html，会自动将target的innerHTML设置为返回的数据。</dd>
-	 *  <dt>ok:<em>function(data)</em></dt>
-	 *  <dd>表单提交成功时调用的函数。</dd>
-	 *  <dt>error:<em>function(code, desc)</em></dt>
-	 *  <dd>表单提交失败是调用的函数。</dd>
-	 * </dl>
+	 * @param {jQuery.fn.ajaxable.selectOptions} options 默认可以不传入任何值。
+	 * @private
 	 * @example
 &lt;select id="selCity" ajax-url="/static/test/cities.html?pid={value}"&gt;
 	&lt;option value="110000"&gt;北京市&lt;/option&gt;
@@ -275,7 +311,7 @@ $('#refreshVCode').click(function() {
 							data = o.pack(data);
 						}
 						target.options.length = 0;
-						H.each(data, function(k, v){
+						$.each(data, function(k, v){
 							if(!!this.selected){
 								target.options[target.options.length] = new Option(v.name, v.value, v.selected);
 							}else{
@@ -309,9 +345,31 @@ $('#refreshVCode').click(function() {
 		}
 	},
 	/**
+	 * 面板ajaxable初始化参数
+	 * @memberof jQuery.fn.ajaxable
+	 * @typedef panelOptions
+	 * @private
+	 * @property {string} [area] 需要使链接ajax化区域的选择器。默认使用div.pager，用来针对分页区域。
+	 * @property {string} [dataType=html] 返回返回数据的格式，默认为html
+	 * @property {function(html:string)} [success] 返回数据后的处理函数。默认为更新整个面板的内容。
+	 */
+	
+	/**
 	 * ajax化一个面板
-	 * @param {HtmlElement} pnl
-	 * @param {Object} options
+	 * @param {jQuery.fn.ajaxable.panelOptions} options
+	 * @private
+	 * @example 
+&lt;div id="cityList"&gt;
+	&lt;div class="pager"&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="/static/test/cities.html?page=1"&gt;1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="/static/test/cities.html?page=2"&gt;2&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+	$('#cityList').ajaxable();
+&lt;/script&gt;
 	 */
 	ajaxPanel: function(pnl, options) {
 		var o = {area:'div.pager', dataType:'html', succss: function(html){
@@ -332,25 +390,25 @@ $('#refreshVCode').click(function() {
 		});
 	},
 	/**
+	 * 表格ajaxable初始化参数
+	 * @memberof jQuery.fn.ajaxable
+	 * @private
+	 * @typedef tableOptions
+	 * @property {(string|function)} [href] 动态获取连接的href，如果不指定，则使用链接自己的href。可以是字符串或函数。如果是函数，当前指针指向对应的元素。
+	 * @property {jQuery.fn.ajaxable~okCallback} 表单提交成功时调用的函数。
+	 * @property {jQuery.fn.ajaxable~errorCallback} 表单提交失败是调用的函数。
+	 * @property {(string|function)} confirm 确认字符串，当要执行之前会调用弹出确认框，用户确认了才继续执行。<br/>
+	 * 如果confirm是函数，则会将当前点击的元素作为this指针执行此confirm函数并执行，将返回的结果作为确认字符串。另外，该确认字符串可以通过元素设定confirm属性来设置。
+	 * @property {RegExp} [rule] 链接的url规则，必须是正则表达式，当链接符合此表达式，才会执行ajax异步请求。默认规则为：/\/_[^\/]\w+($|\?.*)/ 
+	 */
+	
+	/**
 	 * 表格的异步请求
 	 * 因为所有对数据的修改都是需要用到post方法的，有些操作是通过链接去执行，这就要求我们将链接转化为post请求，最终完成这个操作。表格的异步请求处理流程是：如果点击了链接，链接的href最后一个斜杠后面的字符串如果是以_开始的，那么这个请求就会转化为一个POST的ajax请求。
-	 * @param {HTMLElement} table
-	 * @param {Object} options 默认可以不传入任何值。具有如下参数：
-	 * <dl>
-	 *  <dt>href:<em>string | function</em></dt>
-	 *  <dd>动态获取连接的href，如果不指定，则使用链接自己的href。可以是字符串或函数。如果是函数，当前指针指向对应的元素。</dd>
-	 *  <dt>ok:<em>function(data)</em></dt>
-	 *  <dd>表单提交成功时调用的函数。</dd>
-	 *  <dt>error:<em>function(code, desc)</em></dt>
-	 *  <dd>表单提交失败是调用的函数。</dd>
-	 *  <dt>confirm:<em>String | Function</em></dt>
-	 *  <dd>确认字符串，当要执行之前会调用弹出确认框，用户确认了才继续执行。如果confirm是函数，则会将当前点击的元素作为this指针执行此confirm函数并执行，将返回的结果作为确认字符串。另外，该确认字符串可以通过元素设定confirm属性来设置。</dd>
-	 *  <dt>rule:<em>RegExp</em></dt>
-	 *  <dd>链接的url规则，必须是正则表达式，当链接符合此表达式，才会执行ajax异步请求。默认规则为：/\/_[^\/]\w+($|\?.*)/ 。</dd>
-	 * </dl>
+	 * @private
+	 * @param {jQuery.fn.ajaxable.tableOptions} options 默认可以不传入任何值。具有如下参数：
 	 * @example 
 如果有一块区域的链接需要进行同样的异步请求，但是这个区域不是用table来构造的，那么，可以通过如下的方法直接对其他类型的DOM节点（如div）进行异步请求处理。
-jQuery.ajaxable.ajaxTable(table, options)
 
 &lt;table id="cateList"&gt;
 	&lt;thead&gt;
@@ -395,23 +453,24 @@ jQuery.ajaxable.ajaxTable(table, options)
 		});
 	},
 	/**
+	 * 链接ajaxable初始化参数
+	 * @memberof jQuery.fn.ajaxable
+	 * @private
+	 * @typedef linkOptions
+	 * @property {(string|function)} [href] 动态获取连接的href，如果不指定，则使用链接自己的href。可以是字符串或函数。如果是函数，当前指针指向对应的元素。
+	 * @property {jQuery.fn.ajaxable~okCallback} 表单提交成功时调用的函数。
+	 * @property {jQuery.fn.ajaxable~errorCallback} 表单提交失败是调用的函数。
+	 * @property {(string|function)} confirm 确认字符串，当要执行之前会调用弹出确认框，用户确认了才继续执行。<br/>
+	 * 如果confirm是函数，则会将当前点击的元素作为this指针执行此confirm函数并执行，将返回的结果作为确认字符串。另外，该确认字符串可以通过元素设定confirm属性来设置。
+	 */
+	
+	/**
 	 * ajax化一个链接
 	 * 有一些单独出来的链接也是需要异步化成post请求提交的。因此单独链接也提供了ajaxable的方法，不同的是，这里不会对链接的格式进行检查。
-	 * @param {HtmlElement} link
-	 * @param {Object} options 默认可以不传入任何值。具有如下参数：
-	 * <dl>
-	 *  <dt>href:<em>string | function</em></dt>
-	 *  <dd>动态获取连接的href，如果不指定，则使用链接自己的href。可以是字符串或函数。如果是函数，当前指针指向对应的元素。</dd>
-	 *  <dt>ok:<em>function(data)</em></dt>
-	 *  <dd>表单提交成功时调用的函数。</dd>
-	 *  <dt>error:<em>function(code, desc)</em></dt>
-	 *  <dd>表单提交失败是调用的函数。</dd>
-	 *  <dt>confirm:<em>String | Function</em></dt>
-	 *  <dd>确认字符串，当要执行之前会调用弹出确认框，用户确认了才继续执行。如果confirm是函数，则会将当前点击的元素作为this指针执行此confirm函数并执行，将返回的结果作为确认字符串。另外，该确认字符串可以通过元素设定confirm属性来设置。</dd>
-	 * </dl>
+	 * @private
+	 * @param {jQuery.fn.ajaxable.linkOptions} options 默认可以不传入任何值。具有如下参数：
 	 * @example 
 也可以通过如下的方法直接对一个链接进行异步请求处理。
-jQuery.ajaxable.ajaxLink(link, options)
 
 &lt;a href="/unlock" id="linkPost"&gt;解除绑定&lt;/a&gt;
 &lt;script&gt;
@@ -431,51 +490,49 @@ jQuery.ajaxable.ajaxLink(link, options)
 };
 
 /**
- * @description 让元素支持一些异步请求的操作。由于async这个单词比较生僻，故使用ajax来替代。目前支持四种方式的异步请求方式。分别为：图片、表单、下拉框、表格、面板。
- * <br/>
- * 这部分接口设计得比较灵活，可以通过两种方式调用：
- * <ol>
- * <li>直接使用jQuery的函数ajaxable，这个函数会根据元素的nodeName来进行判断该使用哪种接口完成操作。该方法只有一个参数：ajaxable(options)，里边传入相关的配置项</li>
- * <li>直接使用定义到jQuery.ajaxable这个对象的具体函数来进行相关操作。该方法有两个参数：ajax[Form|Img|Select|Panel](node, options)，其中node为一个DOM节点或jQuery对象，options也是配置项，和1完全一样。</li>
- * </ol>
- * 我们需要使表单（id=formAdd）提交支持异步操作，可以分别如下使用：<br/>
- * <ol>
- * <li>H.ui.id('formAdd').ajaxable();</li>
- * <li>H.ui.ajaxable.ajaxForm(H.ui._id('formAdd'));</li>
- * </ol>
- * @constructor jQuery.fn.ajaxable
- * @param {Object} opt 选项
- * <dl>
- * 	<dt>confirm<dt>
- * 	<dd>确认信息，可以是Function、String</dd>
- * 	<dt>ok<dt>
- * 	<dd>异步化请求成功后调用的函数</dd>
- * </dl>
+ * @description 使元素支持异步化操作 {@link jQuery.fn.ajaxable}
+ * @memberof jQuery
+ * @function #ajaxable
+ * @param {Object} options
+ */
+
+/**
+ * 初始化函数<br/>
+ * 让元素支持一些异步请求的操作。由于async这个单词比较生僻，故使用ajax来替代。目前支持四种方式的异步请求方式。分别为：图片、表单、下拉框、表格、面板。
+ * @memberof jQuery.fn.ajaxable
+ * @function ~new
+ * @param {Object} options 选项
  * @example
- * 详见<a href="http://dxl.hapn.cc/grunt/examples/ajaxable.html" target="_blank">例子</a><br/>
+ * 支持如下几种元素的ajaxable：
+ * 1、{@link jQuery.fn.ajaxable.ajaxImg|图片(img)}
+ * 2、{@link jQuery.fn.ajaxable.ajaxForm|表单(form)}
+ * 3、{@link jQuery.fn.ajaxable.ajaxSelect|下拉框(select)}
+ * 4、{@link jQuery.fn.ajaxable.ajaxTable|表格(table)}
+ * 5、{@link jQuery.fn.ajaxable.ajaxPanel|面板(div)}
+ * 6、{@link jQuery.fn.ajaxable.ajaxLink|链接(a)}
  * 针对各种元素的使用方法参见<a href="./hapj.ui.ajaxable.html">详细</a>
  */
-$.fn.ajaxable = function(opt) {
-	var options = opt || {};
+$.fn.ajaxable = function(options) {
+	options = options || {};
 	this.each(function(k, v) {
 		switch(v.tagName) {
 			case 'FORM':
-				H.ui.ajaxable.ajaxForm(v, options);
+				ajaxable.ajaxForm(v, options);
 				break;
 			case 'IMG':
-				H.ui.ajaxable.ajaxImg(v, options);
+				ajaxable.ajaxImg(v, options);
 				break;
 			case 'SELECT':
-				H.ui.ajaxable.ajaxSelect(v, options);
+				ajaxable.ajaxSelect(v, options);
 				break;
 			case 'TABLE':
-				H.ui.ajaxable.ajaxTable(v, options);
+				ajaxable.ajaxTable(v, options);
 				break;
 			case 'A':
-				H.ui.ajaxable.ajaxLink(v, options);
+				ajaxable.ajaxLink(v, options);
 				break;
 			default:
-				H.ui.ajaxable.ajaxPanel(v, options);
+				ajaxable.ajaxPanel(v, options);
 				break;
 		}
 	});

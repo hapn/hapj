@@ -30,6 +30,7 @@
  * @author dengxiaolong@jiehun.com.cn
  * @date 2014-09-25
  * @version 2.0 
+ * @namespace jQuery.fn.calendar
  * @description 日历控件 
  */
 
@@ -66,7 +67,20 @@
 		return format.replace(/(([YmdHis]))/g, function(m, i, k){
 			return dates[k];
 		});
-	}, defaults = {
+	}, 
+	/**
+	 * @memberof jQuery.fn.calendar
+	 * @typedef options
+	 * @private
+	 * @property {jQuery} [input] 日历绑定的input控件，指定此对象后日历对象会和input控件形成交互
+	 * @property {string} [className=cal] 日历控件的样式名称
+	 * @peoperty {string} [format=Y-m-d] 日期格式，用Y、m、d、H、i、s分别代表年、月、日、时、分、秒。
+	 * @property {String} [startDate] 选择时间区间-开始日期 格式：Y-m-d
+	 * @property {String} [endDate] 选择时间区间-结束日期 格式：Y-m-d
+	 * @property {jQuery.fn.calendar~onSelect} onSelect 当选择日期后调用的回调函数
+	 * 
+	 */
+	defaults = {
 		input:null,
 		className:'cal',
 		format:'Y-m-d',
@@ -74,29 +88,24 @@
 		startDate:null,
 		endDate:null
 	};
+	
 	/**
-	 * @class jQuery.fn.calendar
-	 * @param {Object} options 参数，包含如下参数：
-	 * &lt;dl>
-	 *  &lt;dt>input&lt;/dt>
-	 *  &lt;dd>日历绑定的input控件，指定此对象后日历对象会和input控件形成交互&lt;/dd>
-	 *  &lt;dt>className&lt;/dt>
-	 *  &lt;dd>日历控件的样式名称，默认为cal&lt;/dd>
-	 *  &lt;dt>format&lt;/dt>
-	 *  &lt;dd>日期格式，用Y、m、d、H、i、s分别代表年、月、日、时、分、秒。默认为Y-m-d。&lt;/dd>
-	 *  &lt;dt>startDate&lt;/dt>
-	 *  &lt;dd>选择时间区间-开始日期[可选]，格式：Y-m-d。&lt;/dd>
-	 *  &lt;dt>endDate&lt;/dt>
-	 *  &lt;dd>选择时间区间-结束日期[可选]，格式：Y-m-d。&lt;/dd>
-	 *  &lt;dt>onSelect:&lt;em>function(y, m, d, h, i, s)&lt;/em>&lt;/dt>
-	 *  &lt;dd>当选择日期后调用的事件处理函数&lt;/dd>
-	 *  &lt;dd>&lt;em>y&lt;/em> 年份&lt;/dd>
-	 *  &lt;dd>&lt;em>m&lt;/em> 月份&lt;/dd>
-	 *  &lt;dd>&lt;em>d&lt;/em> 日期&lt;/dd>
-	 *  &lt;dd>&lt;em>h&lt;/em> 时钟&lt;/dd>
-	 *  &lt;dd>&lt;em>i&lt;/em> 分钟&lt;/dd>
-	 *  &lt;dd>&lt;em>s&lt;/em> 秒钟&lt;/dd>
-	 * &lt;/dl>
+	 * @memberof jQuery.fn.calendar
+	 * @callback ~onSelect
+	 * @private
+	 * @param {number} y 年份
+	 * @param {number} m 月份
+	 * @param {number} d 日期
+	 * @param {number} h 时钟
+	 * @param {number} i 分钟
+	 * @param {number} s 秒钟
+	 */
+	
+	/**
+	 * 日历控件的初始化函数
+	 * @memberof jQuery.fn.calendar
+	 * @function ~new
+	 * @param {jQuery.fn.calendar.options} options 参数，包含如下参数：
 	 * @description 这个组件主要用来显示日历
 	 * @example
 	 * var cal = $('#calendar').calendar({
@@ -700,13 +709,13 @@
 </div>
 
 <nav>
-<h2><a href="index.html">Index</a></h2><h3>Namespaces</h3><ul><li><a href="hapj.array.html">hapj.array</a></li><li><a href="hapj.browser.html">hapj.browser</a></li><li><a href="hapj.cache.html">hapj.cache</a></li><li><a href="hapj.conf.html">hapj.conf</a></li><li><a href="hapj.date.html">hapj.date</a></li><li><a href="hapj.json.html">hapj.json</a></li><li><a href="hapj.log.html">hapj.log</a></li><li><a href="hapj.object.html">hapj.object</a></li><li><a href="hapj.page.html">hapj.page</a></li><li><a href="hapj.string.html">hapj.string</a></li><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.ajaxable.html">jQuery.ajaxable</a></li><li><a href="jQuery.fn.html">jQuery.fn</a></li><li><a href="jQuery.verifiable.html">jQuery.verifiable</a></li></ul><h3>Classes</h3><ul><li><a href="hapj.html">hapj</a></li><li><a href="hapj.ajax.html">hapj.ajax</a></li><li><a href="hapj.ui.html">hapj.ui</a></li><li><a href="hapj.ui.fn.html">hapj.ui.fn</a></li><li><a href="jQuery.fn.ajaxable.html">jQuery.fn.ajaxable</a></li><li><a href="jQuery.fn.calendar.html">jQuery.fn.calendar</a></li><li><a href="jQuery.fn.floatable.html">jQuery.fn.floatable</a></li><li><a href="jQuery.fn.lazyload.html">jQuery.fn.lazyload</a></li><li><a href="jQuery.fn.menuable.html">jQuery.fn.menuable</a></li><li><a href="jQuery.fn.selectable.html">jQuery.fn.selectable</a></li><li><a href="jQuery.fn.sortable.html">jQuery.fn.sortable</a></li><li><a href="jQuery.fn.sortable.options.html">jQuery.fn.sortable.options</a></li><li><a href="jQuery.fn.suggestable.html">jQuery.fn.suggestable</a></li><li><a href="jQuery.fn.switchable.html">jQuery.fn.switchable</a></li><li><a href="jQuery.fn.verifiable.html">jQuery.fn.verifiable</a></li><li><a href="jQuery.verifiable.rules.html">jQuery.verifiable.rules</a></li></ul>
+<h2><a href="index.html">Index</a></h2><h3>Namespaces</h3><ul><li><a href="hapj.array.html">hapj.array</a></li><li><a href="hapj.browser.html">hapj.browser</a></li><li><a href="hapj.cache.html">hapj.cache</a></li><li><a href="hapj.conf.html">hapj.conf</a></li><li><a href="hapj.date.html">hapj.date</a></li><li><a href="hapj.json.html">hapj.json</a></li><li><a href="hapj.log.html">hapj.log</a></li><li><a href="hapj.object.html">hapj.object</a></li><li><a href="hapj.page.html">hapj.page</a></li><li><a href="hapj.string.html">hapj.string</a></li><li><a href="jQuery.fn.ajaxable.html">jQuery.fn.ajaxable</a></li><li><a href="jQuery.fn.calendar.html">jQuery.fn.calendar</a></li><li><a href="jQuery.fn.radioable.html">jQuery.fn.radioable</a></li></ul><h3>Classes</h3><ul><li><a href="hapj.html">hapj</a></li><li><a href="hapj.ajax.html">hapj.ajax</a></li><li><a href="hapj.ui.html">hapj.ui</a></li><li><a href="hapj.ui.fn.html">hapj.ui.fn</a></li><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.fn.html">jQuery.fn</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Sep 26 2014 11:30:12 GMT+0800 (CST)
+Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Sep 26 2014 18:49:43 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

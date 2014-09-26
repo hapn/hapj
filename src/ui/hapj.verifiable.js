@@ -512,7 +512,7 @@ _getVForm = function(form, options) {
 	
 	// 检查form是否被验证过，如果验证过，则直接调出之前的
 	var verfiedId = form.getAttribute('verfy-id'), vf;
-	if (undefined !== verfiedId && verfiedId >= 0) {
+	if (undefined !== verfiedId && verfiedId && verfiedId >= 0) {
 		vf = _formArray[verfiedId];
 		vf.cleanVerify();
 		return vf;
