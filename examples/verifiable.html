@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<title>verifiable</title>
+		<meta charset="utf-8"/>
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../src/ui/hapj.ajaxable.js"></script>
+		<script src="../src/ui/hapj.verifiable.js"></script>
+		
+		<style>
+			th{width:100px;}
+		</style>
+	</head>
+	<body>
+		<form id="formAdd" action="/post/" method="post">
+		<table width="100%">
+			<tr>
+				<th>帐号：</th>
+				<td><input type="text" name="username" verify-rule="{
+					hint:'请填写帐号',
+					required:'帐号不能为空',
+					range:{
+						type:'length',
+						min:2,
+						max:15,
+						msg:'帐号长度为2-15个字符'
+					}
+				}"/></td>
+			</tr>
+			<tr>
+				<th>
+					
+				</th>
+				<td>
+					<input type="submit" value="提交"/>
+				</td>
+			</tr>
+		</table>
+		</form>
+		
+		<script>
+			$('#formAdd').ajaxable({
+				ok :function(ret) {
+					alert('ok');
+				},
+				error: function() {
+					console.log(arguments);
+				}
+			}).verifiable({});
+		</script>
+	</body>
+</html>
