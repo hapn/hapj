@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 			hapj: {
 				src: [
 			      'src/hapj.js',
-			      'src/ui/hapj.ajaxable.js',
+//			      'src/ui/hapj.ajaxable.js',
 //			      'src/ui/hapj.floatable.js',
 //			      'src/ui/hapj.menuable.js',
 //			      'src/ui/hapj.switchable.js',
@@ -25,9 +25,10 @@ module.exports = function(grunt) {
 //			      'src/ui/hapj.lazyload.js',
 //			      'src/ui/hapj.suggestable.js',
 //			      'src/ui/hapj.verifiable.js',
-			      'src/ui/hapj.calendar.js',
+//			      'src/ui/hapj.calendar.js',
 //			      'src/ui/hapj.sortable.js',
-			      'src/ui/hapj.radioable.js'
+//			      'src/ui/hapj.radioable.js',
+			      'src/ui/hapj.dialog.js'
 				],
 				dest: 'dist/<%= pkg.name %>.js'
 			}

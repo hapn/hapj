@@ -961,7 +961,8 @@ VerifiableForm.prototype = {
 		//先将无用验证规则清楚
 		// 提交表单时进行验证
 		$(this.form).on('submit', function(e){
-			this._last_click_time = new Date();
+			var form = this;
+			form._last_click_time = new Date();
 			
 			self.cleanVerify();
 			self.errNum = 0;
@@ -976,10 +977,16 @@ VerifiableForm.prototype = {
 			}
 			self.formSubmit = false;
 			self.options._submited_ = true; // 已经被提交
+			var options = self.options;
 			if (pass) {
 				ret = true;
-				if (self.options.submit) {
-					ret = self.options.submit.call(this, e, self.options);
+				if (options.submit) {
+					ret = options.submit.call(this, e, self.options);
+				} else {
+					var f = hapj.hook.get('form.submit');
+					if (f) {
+						ret = f.call(this, e, self.options);
+					}
 				}
 				return ret !== false;
 			}
