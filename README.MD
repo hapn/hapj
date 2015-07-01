@@ -58,7 +58,7 @@ hapj.hook.set('form.submit', function(e, options){
 				if (form[name] && 'password' == form[name].type) {
 					data[name] = hapj.string.toMd5(data[name]);
 				}
-      });
+			});
 		};
 	}
 });
