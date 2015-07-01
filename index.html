@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hapj by hapn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Hapj</h1>
+      <h2 class="project-tagline">js framework</h2>
+      <a href="https://github.com/hapn/hapj" class="btn">View on GitHub</a>
+      <a href="https://github.com/hapn/hapj/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/hapn/hapj/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="hapj-javascript-框架" class="anchor" href="#hapj-javascript-%E6%A1%86%E6%9E%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>HapJ javascript 框架</h1>
+
+<blockquote>
+<p>HapJ是一个面向UI的javascript框架，提供了前端开发过程中常见的问题的解决方案。诸如表单校验、延迟加载、异步处理、广告轮换、以及一系列UI交互体验优化的功能。
+hapj.js是其中最核心的文件，包括了<code>UI</code>、<code>日志</code>、<code>钩子</code>、<code>模块</code>等基本组件。</p>
+</blockquote>
+
+<h2>
+<a id="hapj的基本理念" class="anchor" href="#hapj%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%90%86%E5%BF%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>hapj的基本理念</h2>
+
+<ul>
+<li>
+<code>模块化开发</code>，保持业务模块的独立性，降低不同业务的耦合。</li>
+<li>通过<code>钩子</code>机制细化业务流程，并避免对核心代码造成入侵。</li>
+<li>强调<code>日志</code>的重要性，允许通过日志的形式来跟踪用户随时产生的浏览器端的错误。</li>
+<li>
+<code>UI组件</code>强调html标签语义化，使html和js可以严格分离。</li>
+</ul>
+
+<h3>
+<a id="模块化开发" class="anchor" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>模块化开发</h3>
+
+<p>封装一个模块</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// store.js</span>
+
+<span class="pl-k">!</span><span class="pl-k">function</span>(<span class="pl-smi">H</span>) {
+    <span class="pl-k">var</span> store <span class="pl-k">=</span> {
+        <span class="pl-en">get</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">id</span>) {
+            <span class="pl-k">return</span> {
+                id<span class="pl-k">:</span> id,
+                name<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>
+            };
+        }
+    };
+    H.set(<span class="pl-s"><span class="pl-pds">'</span>store<span class="pl-pds">'</span></span>, store);
+}(hapj);</pre></div>
+
+<p>调用该模块</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> store <span class="pl-k">=</span> hapj.get(<span class="pl-s"><span class="pl-pds">'</span>store<span class="pl-pds">'</span></span>).get(<span class="pl-c1">3</span>);</pre></div>
+
+<h3>
+<a id="钩子机制" class="anchor" href="#%E9%92%A9%E5%AD%90%E6%9C%BA%E5%88%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>钩子机制</h3>
+
+<p>hapj核心预留了一些钩子(hook)，通过实现这些钩子，可以细化网站的业务流程，同时不对hapj核心代码入侵。</p>
+
+<p>比如：我们下面的代码让表单提交时包含password类型的字段自动md5编码，使得密码不再明文提交。</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// 表单提交</span>
+hapj.hook.set(<span class="pl-s"><span class="pl-pds">'</span>form.submit<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">e</span>, <span class="pl-smi">options</span>){
+    <span class="pl-c">// 设置debug参数</span>
+    <span class="pl-k">var</span> form <span class="pl-k">=</span> <span class="pl-v">this</span>;
+
+    <span class="pl-k">if</span> (<span class="pl-k">!</span>options.pack) {
+        <span class="pl-c1">options</span>.<span class="pl-en">pack</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">data</span>) {
+            <span class="pl-c">// 对type=password的字段进行加密处理</span>
+            hapj.each(data, <span class="pl-k">function</span>(<span class="pl-smi">name</span>){
+                <span class="pl-k">if</span> (form[name] <span class="pl-k">&amp;&amp;</span> <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">==</span> form[name].<span class="pl-c1">type</span>) {
+                    data[name] <span class="pl-k">=</span> hapj.string.toMd5(data[name]);
+                }
+            });
+        };
+    }
+});</pre></div>
+
+<h3>
+<a id="日志" class="anchor" href="#%E6%97%A5%E5%BF%97" aria-hidden="true"><span class="octicon octicon-link"></span></a>日志</h3>
+
+<p>hapj的日志有两种模式，DEVELOP和ONLINE，DEVELOP模式遇到错误会直接报错，而ONLINE模式，如果有错误，且设置了hapj.log.url，则会将报错信息提交到该网址。</p>
+
+<h3>
+<a id="ui组件" class="anchor" href="#ui%E7%BB%84%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>UI组件</h3>
+
+<p>UI组件包括诸如表单校验、广告轮播、延迟加载等一系列的常用组件，解决了前端开发过程中常遇到的交互问题，且不会对正常的html和css代码构成入侵。</p>
+
+<h4>
+<a id="verifiable验证组件" class="anchor" href="#verifiable%E9%AA%8C%E8%AF%81%E7%BB%84%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>verifiable（验证组件）</h4>
+
+<p>校验组件只需要用verify-rule给表单元素配置相应的校验和提示规则，即可实现表单的校验、提交等。</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>formAdd<span class="pl-pds">"</span></span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>/foo/_bar<span class="pl-pds">"</span></span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">"</span>post<span class="pl-pds">"</span></span>&gt;
+&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span> <span class="pl-e">verify-rule</span>=<span class="pl-s"><span class="pl-pds">"</span>{</span>
+<span class="pl-s">        required:'必填',</span>
+<span class="pl-s">        email:'必须为email'</span>
+<span class="pl-s">    }<span class="pl-pds">"</span></span>&gt;
+
+&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>cate_ename<span class="pl-pds">"</span></span> <span class="pl-e">verify-rule</span>=<span class="pl-s"><span class="pl-pds">"</span>{</span>
+<span class="pl-s">            'range': {</span>
+<span class="pl-s">                type:'length',</span>
+<span class="pl-s">                min:2,</span>
+<span class="pl-s">                max:20,</span>
+<span class="pl-s">                msg:'英文别名为2-20位'</span>
+<span class="pl-s">            },</span>
+<span class="pl-s">            'regexp':/^[a-z][a-z0-9\-_]{1,19}$/i,</span>
+<span class="pl-s">            'hint':'英文别名，比如hunshasheying等'</span>
+<span class="pl-s">        }<span class="pl-pds">"</span></span>&gt;
+&lt;/<span class="pl-ent">form</span>&gt;
+<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">    $(<span class="pl-s"><span class="pl-pds">'</span>#formAdd<span class="pl-pds">'</span></span>).verifiable();</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span>
+</pre></div>
+
+<h4>
+<a id="switchable轮播组件" class="anchor" href="#switchable%E8%BD%AE%E6%92%AD%E7%BB%84%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>switchable（轮播组件）</h4>
+
+<p>switchable是在研究了一系列可切换的共同特点以后，抽象出来的一个UI组件。包括了如下几组概念：</p>
+
+<ul>
+<li>
+<code>触发元素</code> 是指用户通过光标点击或者光标经过等行为能引起切换的原始元素。</li>
+<li>
+<code>目标元素</code> 是指用户通过触发元素引起切换时的切换动作的主体元素。</li>
+<li>
+<code>一组元素</code> 一个触发元素和对应的目标元素构成一组元素。</li>
+</ul>
+
+<p>通过map方法找到需要触发切换动作的元素关联到的元素；通过trigger方法来进行触发元素的变化；通过target方法来进行目标元素的变化。
+其中，目标元素和切换元素可以是同一个元素。</p>
+
+<div class="highlight highlight-html"><pre>
+&lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>tab<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;Item1&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;Item2&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;Item3&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;Item4&lt;/<span class="pl-ent">li</span>&gt;
+&lt;/<span class="pl-ent">ul</span>&gt;
+
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>div1<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>panel<span class="pl-pds">"</span></span>&gt;div1&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>div2<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>panel<span class="pl-pds">"</span></span>&gt;div2&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>div3<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>panel<span class="pl-pds">"</span></span>&gt;div3&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>div4<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>panel<span class="pl-pds">"</span></span>&gt;div4&lt;/<span class="pl-ent">div</span>&gt;
+
+<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">$(<span class="pl-s"><span class="pl-pds">'</span>#tab<span class="pl-pds">'</span></span>).switchable({</span>
+<span class="pl-s1">        tag<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        method<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-en">map</span><span class="pl-k">:</span><span class="pl-k">function</span>(<span class="pl-smi">i</span>) {</span>
+<span class="pl-s1">            <span class="pl-k">return</span> $(<span class="pl-s"><span class="pl-pds">'</span>#div<span class="pl-pds">'</span></span> <span class="pl-k">+</span> (i<span class="pl-k">+</span><span class="pl-c1">1</span>))[<span class="pl-c1">0</span>];</span>
+<span class="pl-s1">        },</span>
+<span class="pl-s1">        <span class="pl-en">trigger</span><span class="pl-k">:</span><span class="pl-k">function</span>(<span class="pl-smi">ts</span>) {</span>
+<span class="pl-s1">            ts.removeClass(<span class="pl-s"><span class="pl-pds">'</span>on<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">            <span class="pl-v">this</span>.<span class="pl-c1">className</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>on<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">        },</span>
+<span class="pl-s1">        <span class="pl-en">target</span><span class="pl-k">:</span><span class="pl-k">function</span>(<span class="pl-smi">ts</span>) {</span>
+<span class="pl-s1">            ts.hide();</span>
+<span class="pl-s1">            <span class="pl-v">this</span>.<span class="pl-c1">style</span>.<span class="pl-c1">display</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>block<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">        },</span>
+<span class="pl-s1">        cycleTime<span class="pl-k">:</span><span class="pl-c1">2000</span></span>
+<span class="pl-s1">    }).rand();</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/hapn/hapj">Hapj</a> is maintained by <a href="https://github.com/hapn">hapn</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
